@@ -18,7 +18,7 @@ long long gcd(long long m, long long n){
 	}
     return m;
 }
-long long main(){
+int main(){
     while(cin>>x1>>y1>>x2>>y2){
         if(gcd(abs(x1-x2),abs(y1-y2))==1){
             cout<<"YE5\n";
