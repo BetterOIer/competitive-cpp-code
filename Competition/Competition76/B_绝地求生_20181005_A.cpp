@@ -8,19 +8,22 @@
 =================================================*/
 #include<iostream>
 using namespace std;
-inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 long long x1,y1,x2,y2,a1,a2;
-long long gcd(long long m, long long n){
+__int128 gcd(__int128 m, __int128 n){
     while (n != 0){
-        long long t = m % n;
+        __int128 t = m % n;
 	    m = n;
 	    n = t;
 	}
     return m;
 }
+__int128 mabs(__int128 a){
+    return a<0? -a:a;
+}
 int main(){
     while(cin>>x1>>y1>>x2>>y2){
-        if(gcd(abs(x1-x2),abs(y1-y2))==1){
+        __int128 f=x1,g=y1,h=x2,j=y2;
+        if(gcd(mabs(f-h),mabs(g-j))<=1){
             cout<<"YE5\n";
             a1++;
         }else{
