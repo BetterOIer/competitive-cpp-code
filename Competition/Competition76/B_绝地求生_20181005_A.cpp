@@ -8,17 +8,17 @@
 =================================================*/
 #include<iostream>
 using namespace std;
-inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
-int x1,y1,x2,y2,a1,a2;
-int gcd(int m, int n){
+inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+long long x1,y1,x2,y2,a1,a2;
+long long gcd(long long m, long long n){
     while (n != 0){
-        int t = m % n;
+        long long t = m % n;
 	    m = n;
 	    n = t;
 	}
     return m;
 }
-int main(){
+long long main(){
     while(cin>>x1>>y1>>x2>>y2){
         if(gcd(abs(x1-x2),abs(y1-y2))==1){
             cout<<"YE5\n";

@@ -10,6 +10,7 @@
 using namespace std;
 inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 string s,ans,tmpans;
+char table[4] = {'Q','B','S',''};
 int slen;
 void read_float(int l,int r){
     while(s[r]=='0')r--;
@@ -17,12 +18,14 @@ void read_float(int l,int r){
     return tmpans=s.substr(l,r-l+1),void();
 }
 void read_qbsg(int l,int r){
-    string tans="";
-    while(s[l]=='0')l++;
+    string tans="",tmp=s.substr(l,r-l+1);
+    l=0,r-=l;
+    while(tmp[l]=='0')l++;
     if(l>r)return tmpans="0",void();
     int len = r-l+1;
-    if(len==4){
-        tans=s[l]
+    while(l<=r){
+        while(s[l]=='0')s[l]++;
+        
     }
 }
 void read_int(int l,int r){
