@@ -24,6 +24,8 @@ int check(int a,int b){
     return fg1+fg2;
 }
 int main(){
+    freopen("s.in","r",stdin);
+    freopen("s.out","w",stdout);
     n=read(),k=read();
     for(int i = 1;i<=n;i++){
         for(int j = 1;j<=k;j++){
@@ -43,5 +45,7 @@ int main(){
         for(auto i:del)s.erase(i);
         cout<<s.size()<<" ";
     }
+    fclose(stdin);
+    fclose(stdout);
     return 0;
 }
