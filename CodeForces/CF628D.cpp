@@ -10,13 +10,12 @@
 #include<cstring>
 using namespace std;
 const long long mod = 1e9+7;
-inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 long long m,d,len=0;
 long long dp[2005][2005][2][2];
 long long L[2005],R[2005];
 string l,r;
 long long dfs(long long pos,long long x,bool Rl,bool Ll,bool ji){
-    if(!pos) return !x;
+    if(!pos)return !x;
     if(~dp[pos][x][Ll][Rl])return dp[pos][x][Ll][Rl];
     long long high = Rl? min(R[pos],9LL):9,low = Ll? max(L[pos],0LL):0;
     if(ji){
@@ -33,12 +32,11 @@ long long dfs(long long pos,long long x,bool Rl,bool Ll,bool ji){
     return dp[pos][x][Ll][Rl];
 }
 int main(){
-    m=read(),d=read();
-    cin>>l>>r;len=l.length();
+    cin>>m>>d>>l>>r;len=l.length();
     memset(dp,-1,sizeof dp);
     for(long long i = 0;i<len;i++){
         L[len-i]=l[i]^48;
-        R[len-i]=R[i]^48;
+        R[len-i]=r[i]^48;
     }
     cout<<dfs(len,0,1,1,1);
     return 0;
