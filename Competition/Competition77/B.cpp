@@ -53,22 +53,6 @@ int cal(int whi, int tim){
         }
     }
     return x;
-    /* if(door[whi].dir=='+'){
-        if(t<=(n-d+1)-x){
-            return x+t;
-        }else{
-            t-=(n-d+1)-x;
-            x=(n-d+1);
-            return x-t;
-        }
-    }
-    if(t<=x-1){
-        return x-t;
-    }else{
-        t-=x-1;
-        x=1;
-        return x+t;
-    } */
 }
 bool solve(int x,int y){
     int p=find(y);
@@ -90,16 +74,13 @@ bool solve(int x,int y){
     return true;
 }
 int main(){
-    /* freopen("wall4.in","r",stdin);
-    freopen("wall4.out","w",stdout); */
+    freopen("wall.in","r",stdin);
+    freopen("wall.out","w",stdout);
     n=read(),m=read(),d=read(),k=read();
     for(int i = 1;i<=k;i++){
         door[i].x=read(),door[i].y=read();cin>>door[i].dir;
     }
-    sort(door+1,door+k+1);/* 
-    for(int i = 2313;i<=k;i++){
-        cout<<door[i].x<<" "<<door[i].y<<" "<<door[i].dir<<endl;
-    } */
+    sort(door+1,door+k+1);
     q=read();
     if(d==n){
         for(int i = 1;i<=q;i++)cout<<"1\n";
