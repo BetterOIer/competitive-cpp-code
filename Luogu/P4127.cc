@@ -25,6 +25,7 @@ ll part(ll x)
 	    ret+=dfs(1,0,0,1);
         cout<<ret<<endl;
 	}
+	cout<<"=====\n";
 	return ret;
 }
 int main()
