@@ -13,15 +13,17 @@ inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c
 int n,k;
 string s;
 void solve(){
-    bool flag=true;
-    while(flag){
-        flag=false;
-        for(int i = 0;i<=n-3;i++){
-            if(s[i]>s[i+2]){
-                swap(s[i],s[i+2]);
-                flag=true;
-            }
-        }
+    string s1,s2;
+    for(int i = 0;i<n;i++){
+        if(i&1)s2+=s[i];
+        else s1+=s[i];
+    }
+    sort(s1.begin(),s1.end());
+    sort(s2.begin(),s2.end());
+    s="";
+    for(int i=0,j=0,k=0;i<n;i++){
+        if(i&1)s+=s2[k++];
+        else s+=s1[j++];
     }
 }
 int main(){
