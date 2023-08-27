@@ -14,24 +14,15 @@ long long n,ans=0,cnt=0;
 bool vis[1000005];
 long long find(long long ad,long long pos,char c){
     for(;pos<n;pos++){
-        if(vis[pos]){
-            continue;
-        }
-        if(s[pos]==c){
-            break;
-        }
+        if(vis[pos]) continue;
+        if(s[pos]==c) break;
     }
-    ans+=pos-ad-cnt;
-    cnt++;
+    ans+=pos-ad-cnt++;
     return pos;
 }
 int main(){
     n=read();
     cin>>s;
-    /* for(long long i = find(0,'('),j = find(0,')');i<n&&j<n;i=find(++i,'('),j=find(++j,')')){
-        ans+=abs(i-j);
-
-    } */
     long long l = 0,r = 0,j=-1;
     for(long long i = 0;i<n;i++){
         if(vis[i]){
