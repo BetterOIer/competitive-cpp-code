@@ -14,6 +14,27 @@ int dfs(int pos,int _7, int _4,bool lim,bool pre0){
     if(pre0) ans+=dfs(pos-1,_7,_4,false,true);
     return dp[pos][_7][_4][lim][pre0]=ans;
 }
+int dfs(int pos,int cho1,int _7,int cho2,int _4,bool lim,bool pre0){
+    if(!pos) return 1;
+    if(~dp[pos][_7][_4][lim][pre0]) return dp[pos][_7][_4][lim][pre0];
+    int high = lim?a[pos]:9, ans=0;
+    for(int i = 0;i<=high;i++){
+        if(c1&&cho1==i) ans+=dfs(pos-1,cho1,_7|(1<<pos),cho2,_4,lim&&i==high,pre0&&i==0);
+        if(c2&&cho2==i) ans+=dfs(pos-1,cho1,_7,cho2,_4|(1<<pos),lim&&i==high,pre0&&i==0);
+        if(!c1) {
+            c1=true;
+            ans+=dfs(pos-1,i,_7|(1<<pos),cho2,_4,lim&&i==high,pre0&&i==0);
+            c1=false;
+        }
+        else if(!c2){
+            c2=true;
+            ans+=dfs(pos-1,cho1,_7,cho2,_4|(1<<pos),lim&&i==high,pre0&&i==0);
+            c2=false;
+        }
+        if(pre0&&i==0) ans+=dfs(pos-1,cho1,_7,cho2,_4,false,true);
+    }
+    return dp[pos][_7][_4][lim][pre0]=ans;
+}
 int get(int x){
     int idx=0;
     while(x){
