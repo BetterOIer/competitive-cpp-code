@@ -6,9 +6,8 @@
 * FileStation: https://betteroier.site:1005
 * OnlineJudge: http://betteroier.site:8888
 =================================================*/
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
-inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 string s;
 long long n,ans=0,cnt=0;
 bool vis[1000005];
@@ -21,8 +20,7 @@ long long find(long long ad,long long pos,char c){
     return pos;
 }
 int main(){
-    n=read();
-    cin>>s;
+    cin>>n>>s;
     long long l = 0,r = 0,j=-1;
     for(long long i = 0;i<n;i++){
         if(vis[i]){
