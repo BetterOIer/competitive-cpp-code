@@ -9,7 +9,6 @@
 #include<iostream>
 #include<vector>
 #include<set>
-#include<cstring>
 using namespace std;
 int n;
 string s;
@@ -23,7 +22,7 @@ bool operator <(node a,node b){
     if(a.x==b.x)return a.y<b.y;
     return a.x<b.x; 
 }
-set<node>S;
+set<node>S,sdel;
 int get_dir(char opt){
     if(opt=='L')return 0;
     if(opt=='R')return 1;
@@ -31,10 +30,16 @@ int get_dir(char opt){
     return 3;
 }
 void solve(int whi){
-    memset(g,0,sizeof g);
+    if(sdel.size()){
+        for(node i:sdel){
+            g[i.x][i.y]=0;
+        }
+        sdel.clear();
+    }
     int x=0,y=0;
     for(int i = 0;i<n;i++){
         g[25+x][25+y]=-1;
+        sdel.insert((node){x+25,25+y});
         int opt = get_dir(s[i]);
         if((whi>>i)&1){
             if(g[25+x+dir[opt][0]][25+y+dir[opt][1]]<=0){
@@ -42,7 +47,7 @@ void solve(int whi){
             }
         }else{
             if(g[25+x+dir[opt][0]][25+y+dir[opt][1]]==-1)return;
-            if(!g[25+x+dir[opt][0]][25+y+dir[opt][1]])g[25+x+dir[opt][0]][25+y+dir[opt][1]]=true;
+            if(!g[25+x+dir[opt][0]][25+y+dir[opt][1]])g[25+x+dir[opt][0]][25+y+dir[opt][1]]=true,sdel.insert((node){25+x+dir[opt][0],25+y+dir[opt][1]});
         }
     }
     S.insert((node){x,y});
