@@ -8,9 +8,45 @@
 =================================================*/
 #include<iostream>
 using namespace std;
-inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
-
+inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+string s;
+long long n,ans=0,cnt=0;
+bool vis[1000005];
+long long find(long long ad,long long pos,char c){
+    for(;pos<n;pos++){
+        if(vis[pos]){
+            continue;
+        }
+        if(s[pos]==c){
+            break;
+        }
+    }
+    ans+=pos-ad-cnt;
+    cnt++;
+    return pos;
+}
 int main(){
-    
+    n=read();
+    cin>>s;
+    /* for(long long i = find(0,'('),j = find(0,')');i<n&&j<n;i=find(++i,'('),j=find(++j,')')){
+        ans+=abs(i-j);
+
+    } */
+    long long l = 0,r = 0,j=-1;
+    for(long long i = 0;i<n;i++){
+        if(vis[i]){
+            cnt--;
+            continue;
+        }
+        if(s[i]=='(')l++;
+        else r++;
+        if(l<r){
+            j = find(i,j+1,'(');
+            vis[j]=true;
+            l++;
+        }
+        vis[i]=true;
+    }
+    cout<<ans;
     return 0;
 }
