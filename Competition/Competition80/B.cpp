@@ -14,7 +14,7 @@ using namespace std;
 int n;
 string s;
 int dir[4][2] = {{-1,0},{+1,0},{0,-1},{0,+1}};
-int g[105][105];
+int g[50][50];
 struct node{
     int x;
     int y;
@@ -34,15 +34,15 @@ void solve(int whi){
     memset(g,0,sizeof g);
     int x=0,y=0;
     for(int i = 0;i<n;i++){
-        g[30+x][30+y]=-1;
+        g[25+x][25+y]=-1;
         int opt = get_dir(s[i]);
         if((whi>>i)&1){
-            if(g[30+x+dir[opt][0]][30+y+dir[opt][1]]<=0){
+            if(g[25+x+dir[opt][0]][25+y+dir[opt][1]]<=0){
                 x = x+dir[opt][0],y = y+dir[opt][1];
             }
         }else{
-            if(g[30+x+dir[opt][0]][30+y+dir[opt][1]]==-1)return;
-            if(!g[30+x+dir[opt][0]][30+y+dir[opt][1]])g[30+x+dir[opt][0]][30+y+dir[opt][1]]=true;
+            if(g[25+x+dir[opt][0]][25+y+dir[opt][1]]==-1)return;
+            if(!g[25+x+dir[opt][0]][25+y+dir[opt][1]])g[25+x+dir[opt][0]][25+y+dir[opt][1]]=true;
         }
     }
     S.insert((node){x,y});
