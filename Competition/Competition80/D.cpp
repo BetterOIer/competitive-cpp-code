@@ -249,8 +249,8 @@ bool cmp(pair<ll,ll> a,pair<ll,ll> b) {
 }
 
 int main() {
-    freopen("16.in","r",stdin);
-    freopen("16.out","w",stdout);
+    freopen("20.in","r",stdin);
+    freopen("20.out","w",stdout);
 	scanf("%d %d",&n,&m);
 	memset(h,-1,sizeof(int)*(n+1));
 	for(int i=1;i<=m;i++) {
