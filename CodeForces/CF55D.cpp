@@ -20,14 +20,14 @@ int gcd(int x,int y){
 }
 int dfs(int pos,int ori,int lcm,bool lim){
     if(!pos) return ori%lcm==0;
-    if(~dp[pos][ori][lcm][lim]) return ~dp[pos][ori][lcm][lim];
+    if(~dp[pos][ori][book[lcm]][lim]) return ~dp[pos][ori][book[lcm]][lim];
     int high = lim? num[pos]:9,ans=0;
     for(int i = 1;i<=high;i++){
         int n_lcm = lcm*i/gcd(lcm,i);
         ans+=dfs(pos-1,(ori*10+i)%mod,n_lcm,lim&&i==high);
     }
     ans+=dfs(pos-1,ori,lcm,lim);
-    return dp[pos][ori][lcm][lim]=ans;
+    return dp[pos][ori][book[lcm]][lim]=ans;
 }
 int solve(int x){
     int cnt =x;len=0;
@@ -38,7 +38,18 @@ int solve(int x){
     memset(dp,-1,sizeof dp);
     return dfs(len,0,1,1);
 }
+void init(){
+	int num=0;
+	for(int i=1;i<=mod;i++){
+		if(mod%i==0){
+			num++;
+			book[i]=num;
+		}
+	}
+}
+
 int main(){
+    init();
     int t=read();
     while(t--){
         a=read(),b=read();
