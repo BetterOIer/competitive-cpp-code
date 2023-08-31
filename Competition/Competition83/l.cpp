@@ -28,8 +28,8 @@ void dfs(int pos,int dis){
     }
 }
 int main(){
-    /* freopen("l.in","r",stdin);
-    freopen("l.out","w",stdout); */
+    freopen("l.in","r",stdin);
+    freopen("l.out","w",stdout);
     n=read(),m=read();
     for(int i = 1,u,v;i<=m;i++){
         u=read(),v=read();
