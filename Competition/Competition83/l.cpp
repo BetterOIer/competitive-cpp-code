@@ -33,7 +33,6 @@ int main(){
     n=read(),m=read();
     for(int i = 1,u,v;i<=m;i++){
         u=read(),v=read();
-        if(u==v)continue;
         ro[u].push_back(v);
         ro[v].push_back(u);
     }
