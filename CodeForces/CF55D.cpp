@@ -9,38 +9,39 @@
 #include<iostream>
 #include<cstring>
 using namespace std;
-const int mod = 2520;
-inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
-int a, b;
-int num[20],len,book[mod+1];;
-int dp[20][mod+1][51][2];
-int gcd(int x,int y){
+const long long mod = 2520;
+inline long long read(){register long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+long long a, b;
+long long num[20],len,book[mod+1];
+long long dp[20][mod+1][51];
+inline long long gcd(register long long x,register long long y){
     if(!y) return x;
     return gcd(y,x%y);
 }
-int dfs(int pos,int ori,int lcm,bool lim){
+inline long long dfs(register long long pos,register long long ori,register long long lcm,bool lim){
     if(!pos) return ori%lcm==0;
-    if(~dp[pos][ori][book[lcm]][lim]) return ~dp[pos][ori][book[lcm]][lim];
-    int high = lim? num[pos]:9,ans=0;
-    for(int i = 1;i<=high;i++){
-        int n_lcm = lcm*i/gcd(lcm,i);
+    if((!lim)&&(~dp[pos][ori][book[lcm]])) return dp[pos][ori][book[lcm]];
+    register long long high = lim? num[pos]:9,ans=0;
+    for(register long long i = 1;i<=high;i++){
+        register long long n_lcm = lcm*i/gcd(lcm,i);
         ans+=dfs(pos-1,(ori*10+i)%mod,n_lcm,lim&&i==high);
     }
-    ans+=dfs(pos-1,ori,lcm,lim);
-    return dp[pos][ori][book[lcm]][lim]=ans;
+    ans+=dfs(pos-1,ori*10%mod,lcm,lim&&0==high);
+    if(!lim)dp[pos][ori][book[lcm]]=ans;
+    return ans;
 }
-int solve(int x){
-    int cnt =x;len=0;
+inline long long solve(register long long x){
+    register long long cnt =x;len=0;
     while(cnt){
         num[++len]=cnt%10;
         cnt/=10;
     }
-    memset(dp,-1,sizeof dp);
     return dfs(len,0,1,1);
 }
 void init(){
-	int num=0;
-	for(int i=1;i<=mod;i++){
+    memset(dp,-1,sizeof dp);
+	register long long num=0;
+	for(register long long i=1;i<=mod;i++){
 		if(mod%i==0){
 			num++;
 			book[i]=num;
@@ -50,10 +51,10 @@ void init(){
 
 int main(){
     init();
-    int t=read();
+    register long long t=read();
     while(t--){
         a=read(),b=read();
-        cout<<solve(b)-solve(a-1);
+        cout<<solve(b)-solve(a-1)<<endl;
     }
     return 0;
 }
