@@ -10,7 +10,6 @@
 using namespace std;
 inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 int n,m;
-int fa[205][205];
 int g[205][205];
 struct node{
     int w;
@@ -18,14 +17,25 @@ struct node{
     int ls[205];
     int rs[205];
 }tr[1005];
+struct POINT{
+    int x;
+    int y;
+};
+POINT fa[205][205];
+POINT find(POINT po){
+    if(fa[po.x][po.y].x==po.x&&fa[po.x][po.y].y==po.y) return fa[po.x][po.y];
+    return fa[po.x][po.y]=find(fa[po.x][po.y]);
+}
 void build(int pos,int l,int r){
     if(l==r){
         for(int j = 1;j<=n;j++){
-
+            tr[pos].ls[j]=tr[pos].rs[j] = fa[find((POINT){l,j}).x][find((POINT){l,j}).y]=find((POINT){l,j});
         }
     }
 }
-void update(int pos,int l,int r,int x);
+void update(int pos,int l,int r,int x){
+
+}
 int main(){
     n=read();
     for(int i = 1;i<=n;i++){
