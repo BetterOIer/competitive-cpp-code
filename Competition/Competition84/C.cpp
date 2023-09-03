@@ -8,32 +8,35 @@
 =================================================*/
 #include<iostream>
 using namespace std;
+inline int read(){
+    int x=0,f=1;char c=getchar();
+    for(;!isdigit(c);c=getchar())if(c=='-')f=-1;
+    for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);
+    return x*f;
+}
 long long x,p,n,a,b,c;
 void solve(){
 	for(a=1;a<=5;a++){
 		for(b=a;a*b<n;b++){
 			if((n-a*b)%(a+b)==0){
 				c=(n-a*b)/(a+b);
-                return cout<<a<<" "<<b<<" "<<c<<endl,void();
+                return printf("%lld %lld %lld\n",a,b,c),void();
 			}
 		}
 	}
-	cout<<"-1\n";
+	printf("-1\n");
 }
 int main(){
-    std::ios::sync_with_stdio(false);
-    cin.tie(0),cout.tie(0);
-	long long t;
-    cin>>t;
+    int t=read();
 	while(t--){
-        cin>>x>>p;
+        x=read(),p=read();
 		n=x*p*p;
 		if(n<=20) solve();
 		else{
 			if(x>=p) b=p,c=p*(p-1),a=(n-b*c)/(b+c);
 			else if(x==p-1) a=6,b=p-3,c=p*p-4*p+6;
 			else a=p%(x+1),b=x+1-a,c=(n+a*a)/(x+1)-a;
-			cout<<a<<" "<<b<<" "<<c<<endl;
+			printf("%lld %lld %lld\n",a,b,c);
 		}
 	}
 	return 0;
