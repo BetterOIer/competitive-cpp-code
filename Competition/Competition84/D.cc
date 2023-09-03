@@ -34,7 +34,7 @@ long long qpow(long long x,int y){
 int main(){
     n=read(),a[0]=read();
     for(int i=1;i<=n;i++){
-        long long b=(1ll*a[i-1]*mod1+mod2)%mod3;
+        long long b=(1ll*a[i-1]*mod1%mod3+mod2)%mod3;
         a[i]=(int)b;
         p[i]=i;
     }
