@@ -81,10 +81,7 @@ void jumpTag(int l,int r){
     }
 }
 int main(){
-    freopen("ex_dream1.in","r",stdin);
-    freopen("ex_dream.ans","w",stdout);
-    n=read(),q=read();
-    build(1,1,n);
+    n=read(),q=read();build(1,1,n);
     for(int i = 1,op,l,r;i<=q;i++){
         op=read(),l=read(),r=read();
         if(op==1){
