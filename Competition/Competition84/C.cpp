@@ -1,22 +1,40 @@
+/*=================================================
+* Le vent se lève, il faut tenter de vivre!
+* Author: Better_OIer Zyx
+* 起风了，唯有努力生存！
+* Blog: https://betteroier.site:1000
+* FileStation: https://betteroier.site:1005
+* OnlineJudge: http://betteroier.site:8888
+=================================================*/
 #include<iostream>
 using namespace std;
-inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
-long long x,p;
-void work(){
-    x=read(),p=read();long long N = 1LL*x*p*p;
-    long long maxb = 1ll*(N-1LL)/2LL;
-    for(long long b = 1LL;b<=maxb;b++){
-        if(1ll*(N/1LL-b)%(b/1LL+1LL)==0){
-            cout<<1ll*(N/1LL-b)/(b/1LL+1LL)<<" "<<b<<" "<<1LL<<endl;
-            return ;
-        }
-    }
-    cout<<"-1\n";
+long long x,p,n,a,b,c;
+void solve(){
+	for(a=1;a<=5;a++){
+		for(b=a;a*b<n;b++){
+			if((n-a*b)%(a+b)==0){
+				c=(n-a*b)/(a+b);
+                return cout<<a<<" "<<b<<" "<<c<<endl,void();
+			}
+		}
+	}
+	cout<<"-1\n";
 }
 int main(){
-    long long t=read();
-    while(t--){
-        work();
-    }
-    return 0;
+    std::ios::sync_with_stdio(false);
+    cin.tie(0),cout.tie(0);
+	long long t;
+    cin>>t;
+	while(t--){
+        cin>>x>>p;
+		n=x*p*p;
+		if(n<=20) solve();
+		else{
+			if(x>=p) b=p,c=p*(p-1),a=(n-b*c)/(b+c);
+			else if(x==p-1) a=6,b=p-3,c=p*p-4*p+6;
+			else a=p%(x+1),b=x+1-a,c=(n+a*a)/(x+1)-a;
+			cout<<a<<" "<<b<<" "<<c<<endl;
+		}
+	}
+	return 0;
 }
