@@ -31,7 +31,7 @@ int main(){
 	while(t--){
         x=read(),p=read();
 		n=x*p*p;
-		if(n<=20) solve();
+		if(p<5) solve();
 		else{
 			if(x>=p) b=p,c=p*(p-1),a=(n-b*c)/(b+c);
 			else if(x==p-1) a=6,b=p-3,c=p*p-4*p+6;
