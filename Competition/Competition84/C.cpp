@@ -5,6 +5,21 @@ long long x,p;
 long long fac[1000005];
 long long get_fac(long long N){
     long long t = __builtin_sqrt(N),tot=0;
+    if(p*p==N){
+        fac[++tot]=1;
+        fac[++tot]=p;
+        fac[++tot]=N;
+        return tot;
+    }
+    if(p*p*2LL==N){
+        fac[++tot]=1;
+        fac[++tot]=p;
+        fac[++tot]=p*p;
+        fac[++tot]=2;
+        fac[++tot]=2*p;
+        fac[++tot]=N;
+        return tot;
+    }
     for(long long i = 1;i<t;i++){
         if(N%i==0)fac[++tot]=i,fac[++tot]=1ll*N/i;
     }
