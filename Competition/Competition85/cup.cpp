@@ -16,25 +16,13 @@ int GCD(int x,int y){
     while(y^=x^=y^=x%=y);
     return x;
 }
-int cal(int g){
-    int div = 1;
-    for(int i = 1;i<=m;i++){
-        while(g%b[i]==0){
-            g/=b[i];
-            div*=b[i];
-        }
-    }
-    return div;
-}
 int get_pri(int maxx){
     int p = 1;
     for(int i=2;i<=maxx;i++){
 		if (vis[i]==0){
             pri[++k]=i;
-            if(i==b[p]){
-                val[k]=-1;
-                p++;
-            }else val[k]=1;
+            if(i==b[p])val[k]=-1,p++;
+            else val[k]=1;
         }
 		for(int j=1;j<=k;j++){
 			if(i*pri[j]>maxx)break;
@@ -52,6 +40,11 @@ int cal2(int cnt){
             ans+=val[j];
         }
     }
+    if(cnt>1){for(int i = 1;i<=m;i++){
+        if(cnt==b[i]){
+            return ans-1;
+        }
+    }return ans+1;}
     return ans;
 }
 int main(){
@@ -69,11 +62,10 @@ int main(){
     }
     int div=1,ans=0;
     for(int i=n;i>=1;i--){
-        a[i]/=div;
-        if(cal2(a[i])<0){
-            a[i]/=(gcd[i]/div);
+        if(cal2(a[i]/div)<0){
+            a[i]/=gcd[i];
             div=gcd[i];
-        }
+        }else a[i]/=div;
         ans+=cal2(a[i]);
     }
     cout<<ans;
