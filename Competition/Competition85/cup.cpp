@@ -40,26 +40,21 @@ int cal2(int cnt){
             ans+=val[j];
         }
     }
-    if(cnt>1){for(int i = 1;i<=m;i++){
-        if(cnt==b[i]){
-            return ans-1;
+    if(cnt>1){
+        for(int i = m;i>=1;i--){
+            if(cnt==b[i]) return ans-1;
         }
-    }return ans+1;}
+        return ans+1;
+    }
     return ans;
 }
 int main(){
     n=read(),m=read();
-    for(int i = 1;i<=n;i++){
-        a[i]=read();
-    }
-    for(int i = 1;i<=m;i++){
-        b[i]=read();
-    }
+    for(int i = 1;i<=n;i++) a[i]=read();
+    for(int i = 1;i<=m;i++) b[i]=read();
     priNum = get_pri(1e6);
     gcd[0]=a[1];
-    for(int i = 1;i<=n;i++){
-        gcd[i]=GCD(a[i],gcd[i-1]);
-    }
+    for(int i = 1;i<=n;i++) gcd[i]=GCD(a[i],gcd[i-1]);
     int div=1,ans=0;
     for(int i=n;i>=1;i--){
         if(cal2(a[i]/div)<0){
