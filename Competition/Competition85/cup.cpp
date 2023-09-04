@@ -54,14 +54,10 @@ int main(){
     for(int i = 1;i<=m;i++) b[i]=read();
     priNum = get_pri(1e6);
     gcd[0]=a[1];
-    for(int i = 1;i<=n;i++) gcd[i]=GCD(a[i],gcd[i-1]);
     int div=1,ans=0;
-    for(int i=n;i>=1;i--){
-        if(cal2(a[i]/div)<0){
-            a[i]/=gcd[i];
-            div=gcd[i];
-        }else a[i]/=div;
-        ans+=cal2(a[i]);
+    for(int i = 1;i<=n;i++) gcd[i]=GCD(a[i],gcd[i-1]),ans+=cal2(a[i]);
+    for(int i=n,o;i;i--){
+        if((o=cal2(gcd[i]/div))<0)ans-=o*i,div=gcd[i];
     }
     cout<<ans;
     return 0;
