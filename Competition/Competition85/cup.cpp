@@ -10,8 +10,8 @@
 using namespace std;
 inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 int n,m,k;
-int a[3005],b[2005],gcd[3005],maxn=0,pri[100005],val[100005];
-bool vis[200000]={1,1};
+int a[2005],b[2005],gcd[2005],pri[1000005],val[1000005],priNum;
+bool vis[2000005]={1,1};
 int GCD(int x,int y){
     while(y^=x^=y^=x%=y);
     return x;
@@ -44,34 +44,37 @@ int get_pri(int maxx){
 	}
     return k;
 }
+int cal2(int cnt){
+    int ans=0;
+    for(int j = 1;j<=priNum&&cnt>=pri[j];j++){
+        while(cnt%pri[j]==0){
+            cnt/=pri[j];
+            ans+=val[j];
+        }
+    }
+    return ans;
+}
 int main(){
     n=read(),m=read();
     for(int i = 1;i<=n;i++){
-        a[i]=read();maxn=max(a[i],maxn);
+        a[i]=read();
     }
-    /* maxn=__builtin_sqrt(maxn); */
     for(int i = 1;i<=m;i++){
         b[i]=read();
     }
-    int priNum = get_pri(maxn);
+    priNum = get_pri(1e6);
     gcd[0]=a[1];
     for(int i = 1;i<=n;i++){
         gcd[i]=GCD(a[i],gcd[i-1]);
     }
-    int div=1;
+    int div=1,ans=0;
     for(int i=n;i>=1;i--){
-        div *= cal(gcd[i]/div);
         a[i]/=div;
-    }
-    int ans=0;
-    for(int i = 1;i<=n;i++){
-        int cnt = a[i];
-        for(int j = 1;j<=priNum&&cnt>=pri[j];j++){
-            while(cnt%pri[j]==0){
-                cnt/=pri[j];
-                ans+=val[j];
-            }
+        if(cal2(a[i])<0){
+            a[i]/=(gcd[i]/div);
+            div=gcd[i];
         }
+        ans+=cal2(a[i]);
     }
     cout<<ans;
     return 0;
