@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<ctime>
 using namespace std;
 inline int read(){
     int x=0,f=1;char c=getchar();
@@ -7,7 +8,7 @@ inline int read(){
     for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);
     return x*f;
 }
-int n,m,k;
+int n,m,k,tt;
 long long rowDrop[100005];
 struct CAVE{
     int xFrom;
@@ -26,10 +27,12 @@ void dfs(int x,int y,long long val){
         ans=max(ans,val);
         return;
     }
+    if(clock()-tt>400)return ;
     if(x==n){
         dfs(n,m,val-1LL*abs(y-m)*rowDrop[n]);
     }
     for(auto id:rowCaveId[x]){
+        if(clock()-tt>400)return ;
         dfs(cave[id].xTo,cave[id].yTo,val+1LL*cave[id].gainVal-1LL*abs(y-cave[id].yFrom)*rowDrop[x]);
     }
 }
@@ -38,6 +41,7 @@ int main(){
     freopen("escape.out","w",stdout);
     int t=read();
     while(t--){
+        tt=clock();
         n=read(),m=read(),k=read();
         for(int i = 1;i<=n;i++){
             rowDrop[i]=read();
