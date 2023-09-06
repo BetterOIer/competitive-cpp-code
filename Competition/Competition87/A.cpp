@@ -9,6 +9,8 @@ inline int read(){
 }
 map<int,int>M;
 int main(){
+    freopen("watermelon.in","r",stdin);
+    freopen("watermelon.out","w",stdout);
     int n=read();
     for(int i = 1,x;i<=n;i++){
         x=read();
@@ -23,14 +25,14 @@ int main(){
         if(!i->second){
             M.erase(i);i = M.begin();
             if(M.size()==2){
-                cout<<"Mirko\n"<<M.begin()->first<<" "<<j->first;
+                cout<<"郝哥\n"<<M.begin()->first<<" "<<j->first;
                 return 0;
             }
         }else i++;
         if(!j->second){
             M.erase(j);j = M.end();j--;
             if(M.size()==2){
-                cout<<"Slavko\n"<<M.begin()->first<<" "<<j->first;
+                cout<<"华强\n"<<M.begin()->first<<" "<<j->first;
                 return 0;
             }
             
@@ -39,6 +41,6 @@ int main(){
         j->second+=minn;
     }
     std::map<int, int>::iterator j = M.end();j--;
-    cout<<"Slavko\n"<<M.begin()->first<<" "<<j->first;
+    cout<<"华强\n"<<M.begin()->first<<" "<<j->first;
     return 0;
 }
