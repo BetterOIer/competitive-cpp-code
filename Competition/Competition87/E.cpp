@@ -146,8 +146,10 @@ int main(){
     for(int i = 1,opt,l,r,x;i<=m;i++){
         opt=read(),l=read(),r=read();
         if(opt<4)x=read();
-        if(opt==1) doAdd(i,l,r,x);
-        else if(opt==2) doMul(i,l,r,x);
+        /* if(opt==1) doAdd(i,l,r,x);
+        else if(opt==2) doMul(i,l,r,x); */
+        if(opt==1) updateAdd(1,1,n,l,r,x);
+        else if(opt==2) updateMul(1,1,n,l,r,x);
         else if(opt==3) setInvalid(l,r,x+i);
         else printf("%lld\n",query(1,1,n,l,r));
         #ifdef DEBUG
