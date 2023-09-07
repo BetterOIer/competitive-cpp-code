@@ -1,4 +1,4 @@
-## 这是Better_OIer C++ 代码仓库
+## 这是Better_OIer C++ 竞赛代码仓库
 
 
 
