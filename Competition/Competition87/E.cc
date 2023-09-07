@@ -21,7 +21,7 @@ struct BLOCK{
     int l;
     int r;
 };
-vector<BLOCK>v[400005];
+vector<BLOCK>v[200005];
 void pushUp(int pos){
     if(tr[pos].timBlock>0)return ;
     tr[pos].valBlock=(tr[pos<<1].valBlock+tr[pos<<1|1].valBlock)%mod;
@@ -51,6 +51,7 @@ void build(int pos,int l,int r){
 }
 //Operate 1
 void updateAdd(int pos,int l,int r,int x,int y,long long val){
+    if(tr[pos].timBlock)return;
     if(x<=l&&r<=y){
         (tr[pos].valUnblock+=tr[pos].numUnblock*val%mod)%=mod;
         (tr[pos].tagAdd+=val)%=mod;
@@ -64,6 +65,7 @@ void updateAdd(int pos,int l,int r,int x,int y,long long val){
 }
 //Operate 2
 void updateMul(int pos,int l,int r,int x,int y,long long val){
+    if(tr[pos].timBlock)return;
     if(x<=l&&r<=y){
         (tr[pos].valUnblock*=val)%=mod;
         (tr[pos].tagAdd*=val)%=mod;
@@ -121,7 +123,7 @@ void deBlock(int pos,int l,int r,int x,int y){
     pushUp(pos);
 }
 
-#define DEBUG
+#define ONLINE
 #ifdef DEBUG
 void out(){
     cout<<"num ";
