@@ -23,7 +23,7 @@ void getArr(long long n){
         if(isLucky(i)){
             a[i]=++k;
         }
-        else a[i]==0;
+        else a[i]=0;
     }
 }
 int main(){
