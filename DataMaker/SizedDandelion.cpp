@@ -63,37 +63,54 @@ int tRandi(int l=INT32_MIN,int r=INT32_MAX,int t=0){
     return ans;
 }
 
+struct EDGE{int a,b;};
+vector<EDGE>edge;
+
+void makeTree1(int n,int l,vector<int> id){
+    vector<int>fa(n);
+    for(int i = 2;i<n;i++){
+        fa[i] = i-1;
+    }
+    edge.push_back((EDGE){id[l],id[0]});
+    for(int i = 2;i<n;i++){
+        int fat = id[fa[i]+l-1],pos=id[i+l-1];
+        if(randi()>0)swap(fat,pos);
+        edge.push_back((EDGE){fat,pos});
+    }
+}
+void makeTree2(int n,int l,vector<int> id){
+    vector<int>fa(n);
+    for(int i = 1;i<n;i++){
+        int fat = id[0],pos=id[l+i-1];
+        if(randi()>0)swap(fat,pos);
+        edge.push_back((EDGE){fat,pos});
+    }
+}
+
 int main(int argc,char* argv[]){
     int n = atoi(argv[1]);
-    int t = atoi(argv[2]);
-    int root = atoi(argv[3]);
+    int root = atoi(argv[2]);
+    int lian = atoi(argv[3]);
+    int juhua = n-lian+1;
     #ifdef IOFILE
     ofstream fout;
     fout.open(argv[4]);
     #endif
 
-    vector<int>fa(n);
-    for(int i = 1;i<n;i++){
-        fa[i] = tRandi(0,i-1,t);
-    }
 
     vector<int>id(n);
     for(int i = 0;i<n;i++)id[i]=i+1;
     shuffle(id.begin(),id.end(),engi);
+
     for(int i = 0;i<n;i++){
         if(id[i]==root){
             swap(id[i],id[0]);
             break;
         }
     }
-    struct EDGE{int a,b;};
-    vector<EDGE>edge;
+    makeTree1(lian,1,id);
+    makeTree2(juhua,lian,id);
 
-    for(int i = 1;i<n;i++){
-        int fat = id[fa[i]],pos=id[i];
-        if(randi()>0)swap(fat,pos);
-        edge.push_back((EDGE){fat,pos});
-    }
     shuffle(edge.begin(),edge.end(),engi);
     #ifdef IOFILE
     fout<<n<<" "<<root<<"\n";
