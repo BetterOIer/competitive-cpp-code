@@ -22,5 +22,6 @@ ZROI/*.exe
 ZROI/*/*.exe
 Review_Fir/*.exe
 DataMaker/*.exe
+include/vscode/*.exe
 .cph
 */.cph
