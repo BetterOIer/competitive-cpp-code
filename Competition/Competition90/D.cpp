@@ -59,7 +59,7 @@ int main(){
         for(long long j = 1;j<=n;j++){
             ans=min(ans,dis[j]+dis1[j]);
         }
-        cout<<(ans==inf?-1:ans)<<endl;
+        cout<<(ans==inf?-1:ans)<<" ";
     }
     return 0;
 }
