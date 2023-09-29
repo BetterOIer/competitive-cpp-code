@@ -4,7 +4,7 @@
 using namespace std;
 inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 int n;
-int xSta[100005];
+int xSta[200005];
 int chkMin(){
     sort(xSta+1,xSta+n+1);
     int lastPos = xSta[1],ans=1;
