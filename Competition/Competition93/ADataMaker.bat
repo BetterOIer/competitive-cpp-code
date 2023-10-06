@@ -1,0 +1,6 @@
+ADataMaker.exe 1 1000000 1000000 -1 1 > emer_5.in
+ADataMaker.exe 2 500000 500000 -1 1 > emer_6.in
+ADataMaker.exe 15 66666 66667 -1000000000 1000000000 > emer_7.in
+ADataMaker.exe 15 66666 66667 -1000000000 1000000000 > emer_8.in
+ADataMaker.exe 18 0 100000 -1000000000 1000000000 > emer_9.in
+ADataMaker.exe 15 22222 66667 -1000000000 1000000000 > emer_10.in
