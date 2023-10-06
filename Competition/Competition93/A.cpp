@@ -9,7 +9,7 @@ inline long long read(){
 long long a[1000005];
 long long rerNegNum[1000005];
 int main(){
-    for(int _ = 5;_<=10;_++){
+    for(int _ = 1;_<=1;_++){
         freopen(("emer_"+to_string(_)+".in").c_str(),"r",stdin);
         freopen(("emer_"+to_string(_)+".out").c_str(),"w",stdout);
         long long t=read();

@@ -77,7 +77,7 @@ int main(int argc,char* argv[]){
         maxn-=n;
         printf("%d\n",n);
         for(int i = 1,x;i<=n;i++){
-            x=tRandi(l2,r2,2);
+            x=tRandi(l2,r2,1);
             printf("%d ",x);
 
         }
