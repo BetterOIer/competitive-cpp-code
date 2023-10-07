@@ -1,0 +1,9 @@
+CDataMaker.exe 930524 95781 > joy_06.in
+CDataMaker.exe 572160 89044 > joy_07.in
+CDataMaker.exe 628991 96427 > joy_08.in
+CDataMaker.exe 844544 96785 > joy_09.in
+CDataMaker.exe 930815 94050 > joy_10.in
+CDataMaker.exe 9223372036807910499 92184 > joy_17.in
+CDataMaker.exe 5576339738511783703 95207 > joy_18.in
+CDataMaker.exe 9223372036854674304 89591 > joy_19.in
+CDataMaker.exe 7161974064164948352 94324 > joy_20.in
