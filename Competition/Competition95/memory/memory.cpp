@@ -28,7 +28,7 @@ int main(){
         }
     } */
     for(int i = 1;i<=n;i++){
-        puts("0\n");
+        puts("0");
     }
     fclose(stdin);
     fclose(stdout);
