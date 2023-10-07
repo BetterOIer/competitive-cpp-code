@@ -24,12 +24,12 @@ struct DFN{
     long long nexPos;
 };
 bool operator < (DFN a,DFN b){
-    return a.tim<b.tim;
+    return a.tim>b.tim;
 }
 priority_queue<DFN>Q;
 int main(){
-    freopen("bus2.in","r",stdin);
-    freopen("bus2.ans","w",stdout);
+    freopen("bus.in","r",stdin);
+    freopen("bus.ans","w",stdout);
     n=read(),p=read(),t=read();
     for(long long i = 1,m;i<=p;i++){
         m=read(),g[i]=read();
