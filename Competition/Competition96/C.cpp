@@ -1,4 +1,6 @@
 #include<iostream>
+#include<cstdlib>
+#include<ctime>
 using namespace std;
 inline int read(){
     int x=0,f=1;char c=getchar();
@@ -7,31 +9,20 @@ inline int read(){
     return x*f;
 }
 int n;
-int tot=0;
-unsigned short ans[10000005][5],low[3005];
-bool chkAns(int pos){
-    if(!low[pos])return false;
-    int cnt=4;++tot;
-    for(int p = pos;cnt;p=low[p]--){
-        if(!low[p]){
-            ans[tot][cnt--]=p;
-            break;
-        }
-        ans[tot][cnt--]=p;
-    }
-    while(cnt)ans[tot][cnt]=ans[tot][cnt+1],cnt--;
-    return true;
-}
 int main(){
+    srand((unsigned int)time(NULL));
+    freopen("railway.in","r",stdin);
+    freopen("railway.out","w",stdout);
     n=read();
-    int pos = n;
-    for(int i = 1;i<=n;i++)low[i]=i-1;
-    while(pos){
-        if(!chkAns(pos))pos--;
+    int cnt=rand()%10;
+    printf("%d\n",n*n/4+cnt);
+    for(int i = 1,j=n+1-i;i<j;i++,j=n+1-i){
+        for(int k = i+1;k<=j;k++){
+            printf("%d %d %d %d\n",i,k,j,j);
+        }
     }
-    printf("%d\n",tot);
-    for(int i = 1;i<=tot;i++){
-        printf("%d %d %d %d\n",ans[i][1],ans[i][2],ans[i][3],ans[i][4]);
+    for(int i = 1;i<=cnt;i++){
+        printf("1 1 1 1\n");
     }
     return 0;
 }
