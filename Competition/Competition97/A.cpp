@@ -7,7 +7,7 @@ inline int read(){
     return x*f;
 }
 int n,spcPoint,ans;
-int a[505][505];
+bool a[505][505];
 /* string s; */
 int main(){
     freopen("firstsnow.in","r",stdin);
@@ -21,13 +21,11 @@ int main(){
     }
     for(int ldX = 1;ldX<=n;ldX++){
         for(int ldY = 1;ldY<=n;ldY++){
-            if(a[ldX][ldY])for(int ruX = ldX;ruX<=n;ruX++){
-                for(int ruY = ldY+1;ruY<=n;ruY++){
-                    if(
-                        a[ruX][ruY]&&
-                        (!((ldX+ruX+ldY-ruY)&1))&&(!((ruX-ldX+ldY+ruY)&1))&&(ldX+ruX+ldY-ruY)/2>=1&&(ruX-ldX+ldY+ruY)/2<=n&&a[(ldX+ruX+ldY-ruY)/2][(ruX-ldX+ldY+ruY)/2]&&
-                        (!((ldX+ruX-ldY+ruY)&1))&&(!((ldX-ruX+ldY+ruY)&1))&&(ldX+ruX-ldY+ruY)/2<=n&&(ldX-ruX+ldY+ruY)/2>=1&&a[(ldX+ruX-ldY+ruY)/2][(ldX-ruX+ldY+ruY)/2]
-                    )ans++;
+            if(a[ldX][ldY]){
+                for(int xOff=0;xOff+1<=ldX&&ldY+xOff+1<=n;xOff++){
+                    for(int yOff=1;ldY+xOff+yOff<=n&&ldX+yOff<=n&&ldX+yOff-xOff>=1;yOff++){
+                        if(a[ldX-xOff][ldY+yOff]&&a[ldX+yOff-xOff][ldY+xOff+yOff]&&a[ldX+yOff][ldY+xOff])ans++;
+                    }
                 }
             }
         }
