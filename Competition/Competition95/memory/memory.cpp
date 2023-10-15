@@ -14,10 +14,10 @@ struct node{
     int num;
     int son[26];
 };
-node trie[15];
-string s,memStr[15];
-int havFnd[15];
-int tmp[15];
+node trie[1000005];
+string s,memStr[1000005];
+int havFnd[1000005];
+int tmp[1000005];
 vector<int>ans;
 void rotate(int m){
     m = m%s.length();
@@ -35,29 +35,35 @@ void add(int pos,int posStr){
     }
     add(trie[pos].son[s[posStr]-'a'],posStr+1);
 }
-int chkStr(int pos,int sta){
-    int len = memStr[pos].length(),j=0,lstRoot=sta;
+int chkStr(int pos,int sta,int staj){
+    int len = memStr[pos].length(),j=staj;
     for(int i = sta;i<len;i++){
         if(!trie[j].son[memStr[pos][i]-'a']){
-            if(trie[j].num)j = 0,lstRoot=i,i--;
-            else return lstRoot;
+            if(trie[j].num)j = 0,i--;
+            else{
+                tmp[pos]=j;
+                return i;
+            }
         }else{
             j = trie[j].son[memStr[pos][i]-'a'];
         }
     }
     if(trie[j].num)return -1;
-    else return lstRoot;
+    else{
+        tmp[pos]=j;
+        return len-1;
+    }
 }
 int main(){
-    /* freopen("memory.in","r",stdin);
-    freopen("memory.out","w",stdout); */
+    freopen("memory.in","r",stdin);
+    freopen("memory.out","w",stdout);
     n=read();
     for(int i = 1,lstAns = 0;i<=n;i++){
         cin>>opt>>s;
         rotate(lstAns);
         if(opt=='?'){
             memStr[++totMemStr]=s;
-            lstAns = chkStr(totMemStr,0);
+            lstAns = chkStr(totMemStr,0,0);
             if(lstAns==-1){
                 havFnd[totMemStr]=-1;
                 printf("1 %d\n",totMemStr);
@@ -72,7 +78,8 @@ int main(){
             for(int j = 1;j<=totMemStr;j++){
                 if(havFnd[j]==-1)continue;
                 else{
-                    if(chkStr(j,havFnd[j])==-1)ans.push_back(j),havFnd[j]=-1;
+                    havFnd[j]=chkStr(j,havFnd[j],tmp[j]);
+                    if(havFnd[j]==-1)ans.push_back(j);
                 }
             }
             lstAns=ans.size();
