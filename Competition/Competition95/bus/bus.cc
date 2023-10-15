@@ -7,11 +7,11 @@ struct node{
     int to;
     long long val;
 };
-vector<node>ro[100005];
+vector<node>ro[500005];
 vector<int> path[100005];
 int m[100005],g[100005],getRng[100005],tot;
-long long dis[100005];
-bool vis[100005];
+long long dis[500005];
+bool vis[500005];
 struct Qnode{
     int pos;
     long long val;
@@ -19,8 +19,8 @@ struct Qnode{
 bool operator<(const Qnode a, Qnode b){return a.val>b.val;}
 priority_queue<Qnode>Q;
 int main(){
-    /* freopen("bus.in","r",stdin);
-    freopen("bus.ans","w",stdout); */
+    freopen("bus.in","r",stdin);
+    freopen("bus.out","w",stdout);
     n=read(),p=read(),t=read();tot=n;
     for(int i=1,rng,M;i<=p;i++){
         m[i]=read(),g[i]=read(),M=m[i]<<1,rng=tot+1,tot+=M,getRng[i]=rng;
@@ -34,7 +34,7 @@ int main(){
     }
 
     /* Dji */
-    for(int i=2;i<=tot;i++)dis[i]=0x3f3f3f3f;
+    for(int i=2;i<=tot;i++)dis[i]=1145141919810ll;
     Q.push((Qnode){1,0});
     while(Q.size()){
         Qnode now=Q.top();Q.pop();
@@ -63,12 +63,3 @@ int main(){
     }
     return 0;
 }
-
-/* 10 2 6
-9 3
-4 3 6 9 5 10 7 1 2 8 
-2 4
-1 3 9 
-1 2
-10 8 
- */
