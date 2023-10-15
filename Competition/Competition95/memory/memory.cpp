@@ -14,10 +14,9 @@ struct node{
     int num;
     int son[26];
 };
-node trie[100005];
-string s,memStr[100005];
-int idMemStr[100005];
-bool havFnd[100005];
+node trie[1000005];
+string s,memStr[1000005];
+bool havFnd[1000005];
 vector<int>ans;
 void rotate(int m){
     m = m%s.length();
@@ -25,51 +24,49 @@ void rotate(int m){
     s=s2+s1;
 }
 void add(int pos,int posStr){
-    if(posStr==(int)(s.length())-1){
+    if(posStr==(int)(s.length())){
         trie[pos].num=1;
         return;
     }
-    if(!trie[pos].son[s[posStr]-'0']){
-        trie[pos].son[s[posStr]-'0']=++tot;
-        trie[tot].ch=s[posStr]-'0';
+    if(!trie[pos].son[s[posStr]-'a']){
+        trie[pos].son[s[posStr]-'a']=++tot;
+        trie[tot].ch=s[posStr]-'a';
     }
-    add(trie[pos].son[s[posStr]-'0'],posStr+1);
+    add(trie[pos].son[s[posStr]-'a'],posStr+1);
 }
 bool chkStr(int pos){
     int len = memStr[pos].length(),j=0;
     for(int i = 0;i<len;i++){
-        if(!trie[j].son[memStr[pos][i]-'0']){
+        if(!trie[j].son[memStr[pos][i]-'a']){
             if(trie[j].num)j = 0,i--;
             else return false;
         }else{
-            j = trie[j].son[memStr[pos][i]-'0'];
+            j = trie[j].son[memStr[pos][i]-'a'];
         }
     }
     if(trie[j].num)return true;
     else return false;
 }
 int main(){
-   /*  freopen("memory.in","r",stdin);
-    freopen("memory.out","w",stdout); */
+    freopen("memory.in","r",stdin);
+    freopen("memory.out","w",stdout);
     n=read();
     for(int i = 1,lstAns = 0;i<=n;i++){
         cin>>opt>>s;
         rotate(lstAns);
         if(opt=='?'){
             memStr[++totMemStr]=s;
-            idMemStr[totMemStr]=i;
             lstAns = chkStr(totMemStr);
             if(lstAns){
                 havFnd[totMemStr]=true;
-                printf("1 %d\n",i);
+                printf("1 %d\n",totMemStr);
             }else printf("0\n");
         }else{
-            add(0,0);
+            add(0,0);ans.clear();
             for(int j = 0;j<=totMemStr;j++){
                 if(havFnd[j])continue;
                 else{
-                    ans.clear();
-                    if(chkStr(j))ans.push_back(idMemStr[j]);
+                    if(chkStr(j))ans.push_back(j),havFnd[j]=true;
                 }
             }
             lstAns=ans.size();
