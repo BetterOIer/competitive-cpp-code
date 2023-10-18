@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstdio>
 #include<vector>
 using namespace std;
 inline int read(){
@@ -32,5 +33,7 @@ int main(){
     for(int i = 1;i<=n;i++){
         cout<<dep[i]<<" "<<n-siz[i]+1<<endl;
     }
+    fclose(stdin);
+    fclose(stdout);
     return 0;
 }
