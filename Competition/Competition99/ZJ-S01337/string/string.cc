@@ -43,8 +43,8 @@ void dfs(int pos,int prePri){
     }
 }
 int main(){
-    /* freopen("string.in","r",stdin);
-    freopen("string.out","w",stdout); */
+    freopen("string.in","r",stdin);
+    freopen("string.out","w",stdout);
     n=read();
     for(int i = 1;i<=n;i++){
         cin>>s;strLen = s.length();
