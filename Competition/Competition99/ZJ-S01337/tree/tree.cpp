@@ -8,6 +8,7 @@ inline int read(){
     return x*f;
 }
 int main(){
+    
     fclose(stdin);
     fclose(stdout);
     return 0;
