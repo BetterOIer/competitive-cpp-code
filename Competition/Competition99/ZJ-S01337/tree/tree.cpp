@@ -40,7 +40,7 @@ int dfsHugTree(int pos,int fat){
     }
     return sizHugeTr[pos]=res;
 }
-void LCA(int a,int b,int pla,int plb,int &lca, int &plLca){
+/* void LCA(int a,int b,int pla,int plb,int &lca, int &plLca){
     int aMod,bMod,faIdFrom,tmp;
     if(pla==plb){
         aMod = a;bMod = b;faIdFrom = tr[pla].idFrom;
@@ -73,6 +73,15 @@ void LCA(int a,int b,int pla,int plb,int &lca, int &plLca){
     }
     lca = fa[aMod][0];
     plLca = faHugeTr[pla][0];
+} */
+void LCA(int a,int b,int pla,int plb,int &lca, int &plLca){
+    int tmp;
+    if(depHugeTr[pla]<depHugeTr[plb])swap(pla,plb),swap(a,b);
+    tmp = 20;
+    while(depHugeTr[pla]>depHugeTr[plb]){
+        if(depHugeTr[faHugeTr[pla][tmp]]>=depHugeTr[plb])pla=faHugeTr[pla][tmp];
+        tmp--;
+    }
 }
 int getDis(int a,int pla){
     return dis[pla]+dep[a-tr[pla].idFrom+tr[pla].sonHead]-dep[fa[tr[pla].sonHead][0]];
