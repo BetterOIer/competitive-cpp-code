@@ -1,25 +1,20 @@
 #include<iostream>
-#include<set>
-#define base 256
+#include<map>
 using namespace std;
-inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
-int n,len;
+inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+long long n,len;
 string s,preLeft;
-set<int>hashStr;
-int mod=101527,ans=0;
-void cal(){
-    int cnt=0;
-    for(int i = 0;i<=s.length()-1;i++){
-        cnt=(cnt*base+s[i])%mod;
-    }
-    hashStr.insert(cnt);
+map<string,long long>strs;
+long long calAns(long long how){
+    return how*(how-1)/2;
 }
 int main(){
-    /* freopen("game.in","r",stdin);
-    freopen("game.out","w",stdout); */
+    freopen("game.in","r",stdin);
+    freopen("game.out","w",stdout);
     n=read();
     cin>>s;
-    for(int i = 0;i<n;i++){
+    strs[preLeft]=1;
+    for(long long i = 0;i<n;i++){
         if(!preLeft.length()){
             preLeft+=s[i];
             len++;
@@ -32,9 +27,15 @@ int main(){
                 len++;
             }
         }
-        cal();
+        if(!strs[preLeft]){
+            strs[preLeft]=0;
+        }strs[preLeft]++;
     }
-    cout<<hashStr.size();
+    long long ans=0;
+    for(auto i:strs){
+        ans+=calAns(i.second);
+    }
+    cout<<ans;
     fclose(stdin);
     fclose(stdout);
     return 0;
