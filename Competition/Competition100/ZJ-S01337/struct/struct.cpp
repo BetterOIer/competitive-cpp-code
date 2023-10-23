@@ -22,25 +22,28 @@ struct CustomType{
     int inNum=0;
     int siz=0;
     vector<node>inType;
+    vector<int>offset;
 };
 vector<CustomType>customType;
 int totCType;
 map<string,int>refTypeSize,refCType,refEmt;
 vector<node>dfdEmt;
 int addrCount=0;
-int emtFrom[105];
 string req,ansOfQ4;
 void creNewType(){
     CustomType newType;newType.inType.clear();
     cin>>newType.name;newType.inNum=read();
+    int offset=0;
     for(int j = 1;j<=newType.inNum;j++){
         node basicType;
         cin>>basicType.typeName>>basicType.name;
-        newType.neat=max(newType.neat,refTypeSize[basicType.typeName]);
+        newType.neat=max(newType.neat,customType[refCType[basicType.typeName]].neat);
         newType.siz+=refTypeSize[basicType.typeName];
         newType.inType.push_back(basicType);
+        newType.offset.push_back(offset);
+        offset=ceil(1.0*(offset+customType[refCType[basicType.typeName]].siz)/customType[refCType[basicType.typeName]].neat)*customType[refCType[basicType.typeName]].neat;
     }
-    newType.siz=ceil(1.0*newType.siz/newType.neat)*newType.neat;
+    newType.siz=ceil(1.0*(offset))/newType.neat*newType.neat;
     refTypeSize[newType.name]=newType.siz;
     customType.push_back(newType);
     refCType[newType.name]=totCType++;
@@ -50,34 +53,34 @@ void creNewEmt(){
     cout<<addrCount<<endl;
     node newNode;
     cin>>newNode.typeName>>newNode.name;
-    emtFrom[dfdEmt.size()]=addrCount;
     refEmt[newNode.name]=dfdEmt.size();
     dfdEmt.push_back(newNode);
-    addrCount+=customType[refCType[newNode.typeName]].siz;/* Attention!! */
     customType[0].inNum++;
     customType[0].inType.push_back(newNode);
-    customType[0].neat=max(customType[0].neat,refTypeSize[newNode.typeName]);
+    customType[0].offset.push_back(addrCount);
+    customType[0].neat=max(customType[0].neat,customType[refCType[newNode.typeName]].neat);
+    addrCount=ceil(1.0*(addrCount+customType[refCType[newNode.typeName]].siz-1)/customType[refCType[newNode.typeName]].neat)*customType[refCType[newNode.typeName]].neat;
 }
 void findFrom(int addrSta, int reqSta,int preType){
-    //cout<<addrSta<<" "<<reqSta<<" "<<preType<<endl;
+    int oriAddrSta = addrSta;
     string nowCope = req.substr(reqSta,req.length()-reqSta);
     int dotPla = nowCope.find(".");
     if(dotPla==-1){
-        for(node i:customType[preType].inType){
-            if(i.name==nowCope){
+        for(int i = 0;i<customType[preType].inType.size();i++){
+            if(customType[preType].inType[i].name==nowCope){
                 cout<<addrSta<<endl;
                 return;
             }
-            addrSta+=customType[refCType[i.typeName]].siz;
+            addrSta=oriAddrSta+customType[preType].offset[i+1];//Danger
         }
     }else{
         string nowType = nowCope.substr(0,dotPla);
-        for(node i:customType[preType].inType){
-            if(i.name==nowType){
-                findFrom(addrSta,reqSta+dotPla+1,refCType[i.typeName]);
+        for(int i = 0;i<customType[preType].inType.size();i++){
+            if(customType[preType].inType[i].name==nowType){
+                findFrom(addrSta,reqSta+dotPla+1,refCType[customType[preType].inType[i].typeName]);
                 return;
             }
-            addrSta+=customType[refCType[i.typeName]].siz;
+            addrSta=oriAddrSta+customType[preType].offset[i];
         }
     }
 }
@@ -91,11 +94,11 @@ bool findWho(int goalSta, int addrSta, int nowType){
             return true;
         }
     }
-    for(node i:customType[nowType].inType){
-        if(addrSta+customType[refCType[i.typeName]].siz>goalSta){
-            ansOfQ4+=i.name+".";
-            return findWho(goalSta,addrSta,refCType[i.typeName]);
-        }else addrSta+=customType[refCType[i.typeName]].siz;
+    for(int i = 0;i<customType[nowType].inType.size();i++){
+        if(addrSta+customType[nowType].offset[i]>goalSta){
+            ansOfQ4+=customType[nowType].inType[i].name+".";
+            return findWho(goalSta,addrSta+customType[nowType].offset[i-1],refCType[customType[nowType].inType[i].typeName]);
+        }else addrSta+=customType[refCType[customType[nowType].inType[i].typeName]].siz;
     }
     cout<<"ERR\n";
     return false;
