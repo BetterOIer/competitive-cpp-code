@@ -7,7 +7,7 @@ AtCoder/*.exe
 bmhOJ/*.exe
 BOOJ/*.exe
 CodeForces/*.exe
-Competition/*.exe
+Luogu/*.exe
 Competition/*/*.exe
 Competition/*/*/*.exe
 Competition/*/*/*/*.exe
@@ -28,3 +28,18 @@ include/vscode/*.exe
 Competition/*/*/*/*.in
 Competition/*/*/*/*.out
 Competition/*/*/*/*.ans
+Competition/*/*/*.in
+Competition/*/*/*.out
+Competition/*/*/*.ans
+Competition/*/*.in
+Competition/*/*.out
+Competition/*/*.ans
+Luogu/*.in
+Luogu/*.out
+Luogu/*.ans
+DataMaker/*.in
+DataMaker/*.out
+DataMaker/*.ans
+*.in
+*.out
+*.ans
