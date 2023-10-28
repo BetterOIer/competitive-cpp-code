@@ -7,17 +7,14 @@ inline int read(){
     for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);
     return x*f;
 }
-int fat[100005];
-bool vis[100005];
+vector<int>ro[100005];
 int n,q;
 int ans = 0;
-int getAns(int pos,int l,int r){
-    int res=0,cnt=1;vis[pos]=true;
-    for(int i = pos;i;i = fat[i]){
-        if(i<=r&&i>=l&&!(vis[i]))cnt++;
-        if(i<=r&&i>=l)res+=cnt;
+void dfs(int pos,int l,int r,int hav){
+    for(int i:ro[pos]){
+        dfs(i,l,r,hav+(l<=i&&i<=r));
     }
-    return res;
+    if((l<=pos&&pos<=r))ans+=hav;
 }
 int main(){
     #ifndef LOCAL
@@ -28,9 +25,10 @@ int main(){
     freopen("ex_tree3.out","w",stdout);
     #endif
     n=read();
+    ro[0].push_back(1);
     for(int i = 1,fa;i<n;i++){
         fa=read();
-        fat[i+1]=fa;
+        ro[fa].push_back(i+1);
     }
     q=read();
     for(int i = 1,l,r;i<=q;i++){
@@ -39,10 +37,7 @@ int main(){
         r=(r^ans)%n+1;
         if(l>r)swap(l,r);
         ans=0;
-        for(int j = l;j<=r;j++)vis[j]=false;
-        for(int j = l;j<=r;j++){
-            if(!vis[j])ans+=getAns(j,l,r);
-        }
+        dfs(0,l,r,0);
         cout<<ans<<endl;
     }
     return 0;
