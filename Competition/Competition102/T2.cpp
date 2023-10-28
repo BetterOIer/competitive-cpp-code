@@ -33,3 +33,4 @@ int main(){
     cout<<ans;
     return 0;
 }
+//10pts
