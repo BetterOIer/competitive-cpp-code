@@ -6,6 +6,13 @@ int l[2000004],r[2000004];
 long long sum[2000004],s[2000004];
 int n;
 int main(){
+    #ifndef LOCAL
+    freopen("qiandao.in","r",stdin);
+    freopen("qiandao.out","w",stdout);
+    #else
+    freopen("ex_segmin3.in","r",stdin);
+    freopen("ex_segmin3.out","w",stdout);
+    #endif
     n=read();
     for(int i=1;i<=n;i++)a[i]=read();
     for(int i=1;i<=n;i++)s[i]=s[i-1]+i;
