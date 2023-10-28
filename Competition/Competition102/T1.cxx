@@ -1,85 +1,35 @@
-/* #include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
-int n,i,j,a[2000005],st[22][2000005];
-long long ans;
-void solv(int l,int r){
-	if(l>r) return;
-	int t=__lg(r-l+1);
-	int mid=a[st[t][l]]<a[st[t][r-(1<<t)+1]]?st[t][l]:st[t][r-(1<<t)+1];
-	if(mid<=(l+r>>1)) ans+=1ll*(mid-l+1)*(mid-l)/2;
-	else ans+=1ll*(mid-l+mid-l-r+mid)*(r-mid+1)/2;
-	solv(l,mid-1),solv(mid+1,r);
-}
-int rd(){
-	char c=getchar();
-	int s=0;
-	while(c<'0'||c>'9') c=getchar();
-	while(c>='0'&&c<='9') s=s*10+c-48,c=getchar();
-	return s;
-}
-int main()
-{
-	scanf("%d",&n);
-	for(i=1;i<=n;i++){
-		a[i]=rd();
-		st[0][i]=i;
-	}
-	for(i=1;i<=20;i++)
-	for(j=1;j+(1<<i)-1<=n;j++)
-	st[i][j]=a[st[i-1][j]]<a[st[i-1][j+(1<<i-1)]]?st[i-1][j]:st[i-1][j+(1<<i-1)];
-	solv(1,n);
-	printf("%lld",ans);
-	return 0;
-} */
-
-#include<bits/stdc++.h>
-
-const int N=2000005;
-
-using namespace std;
-
-int n,a[N],l[N],r[N],st[N],top;
-long long ans;
-
-inline int read(){
-	int t=1,x=0;
-	char ch=getchar();
-	for(;!isdigit(ch);ch=getchar()) if(ch=='-') t=-1;
-	for(;isdigit(ch);ch=getchar()) x=(x<<1)+(x<<3)+(ch^48);
-	return t*x;
-}
-
-long long cal(int x){
-	return 1ll*x*(x+1)/2;
-}
-
-bool cmp(int x,int y){
-	return a[x]<a[y]||a[x]==a[y]&&x>y;
-}
-
+inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+int stk[2000004],pos,a[2000004];
+int l[2000004],r[2000004];
+long long sum[2000004],s[2000004];
+int n;
 int main(){
-	n=read();
-	for(int i=1;i<=n;i++) a[i]=read();
-	for(int i=1;i<=n;i++){
-		while(top && cmp(i,st[top])) top--;
-		if(top) l[i]=st[top]+1;
-		else l[i]=1;
-		st[++top]=i;
-	}
-	top=0;
-	for(int i=n;i>=1;i--){
-		while(top && cmp(i,st[top])) top--;
-		if(top) r[i]=st[top]-1;
-		else r[i]=n;
-		st[++top]=i;
-	}
-	for(int i=1;i<=n;++i){
-		int ll=i-l[i],rr=r[i]-i;
-		ans+=cal(min(ll,rr+1));
-		if(ll>rr+1){
-			ans+=1ll*(ll-rr-1)*(rr+1);
-		}
-	}
-	cout<<ans;
-	return 0;
+    n=read();
+    for(int i=1;i<=n;i++)a[i]=read();
+    for(int i=1;i<=n;i++)s[i]=s[i-1]+i;
+    for(int i=1;i<=n;i++)sum[i]=sum[i-1]+s[i];
+    for(int i=1;i<=n;i++){
+        int x=a[i];
+        while(pos&&a[stk[pos]]>=x)pos--;
+        if(!pos)l[i]=1;
+        else l[i]=stk[pos]+1;
+        stk[++pos]=i;
+    }
+    pos=0;
+    for(int i=n;i;i--){
+        int x=a[i];
+        while(pos&&a[stk[pos]]>x)pos--;
+        if(!pos)r[i]=n;
+        else r[i]=stk[pos]-1;
+        stk[++pos]=i;
+    }
+    long long ans=0;
+    for(int i=1;i<=n;i++){
+        int tmpL=l[i], tmpR=r[i], rlen=tmpR-i+1, llen=i-tmpL;
+        ans+=1ll*llen*min(llen, rlen)-s[min(llen, rlen)-1];
+    }
+    cout<<ans<<endl;                          
+    return 0;
 }
