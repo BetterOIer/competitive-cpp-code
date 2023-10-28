@@ -51,6 +51,7 @@ void add(){
 }
 void dfs(int x,int y,int nowT,int xt,int yt){
     if(nowT==t){if(x==xt&&y==yt)add();return;}
+    if(abs(xt-x)+abs(yt-y)>t)return;
     if(x+1<=n)dfs(x+1,y,nowT+1,xt,yt);
     if(x-1>=0)dfs(x-1,y,nowT+1,xt,yt);
     if(y+1<=n)dfs(x,y+1,nowT+1,xt,yt);
@@ -60,6 +61,9 @@ int main(){
     #ifndef LOCAL
     freopen("typical.in","r",stdin);
     freopen("typical.out","w",stdout);
+    #else
+    freopen("ex_canteen2.in","r",stdin);
+    freopen("ex_canteen2.out","w",stdout);
     #endif
     n=read(),t=read(),q=read();/* getFac(n<<1); */
     for(int i = 1,xs,ys,xt,yt;i<=q;i++){
@@ -76,7 +80,7 @@ int main(){
             cout<<ans1*ans2%mod*ans3%mod<<endl;
             什么牛马算法 趋势吧
              */
-            
+
             //我最喜欢DFS了
             dfs(xs,ys,0,xt,yt);
             cout<<ans<<endl;ans=0;
