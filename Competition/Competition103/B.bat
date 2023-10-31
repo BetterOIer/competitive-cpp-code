@@ -1,0 +1,1 @@
+Competition\Competition103\BDataMaker.exe 10000 10 > tree01.in
