@@ -70,6 +70,7 @@ int main(int argc,char* argv[]){
     int m = atoi(argv[2]);
     int cases = atoi(argv[3]);
     int t = atoi(argv[4]);
+    int oked = atoi(argv[5]);
     /* int n = 18;
     int m = 20;
     int cases = 0;
@@ -95,7 +96,7 @@ int main(int argc,char* argv[]){
         edge.push_back((EDGE){fat,pos});
     }
     int mleft = m-edge.size();
-    if((!cases)&&mleft>=2){
+    if((!cases)&&mleft>=2&&oked){
         int pos = randi(0,n-1);
         while(ro[fa[pos]].size()<=2)pos = randi(0,n-1);
         int pos2  = ro[fa[pos]][randi(0,ro[fa[pos]].size()-1)];
@@ -105,7 +106,7 @@ int main(int argc,char* argv[]){
     }
     mleft = m-edge.size();
     if(cases){
-        for(int i = 1;i<=mleft/4;i++){
+        if(oked)for(int i = 1;i<=mleft/4;i++){
             int pos = randi(0,n-1);
             int pos2 = ro[pos][ro[pos].size()-1];
             edge.push_back((EDGE){id[pos],id[pos]});
