@@ -71,6 +71,7 @@ int main(int argc,char* argv[]){
     int cases = atoi(argv[3]);
     int t = atoi(argv[4]);
     int oked = atoi(argv[5]);
+    int bigHuan = atoi(argv[6]);
     /* int n = 18;
     int m = 20;
     int cases = 0;
@@ -112,13 +113,15 @@ int main(int argc,char* argv[]){
             edge.push_back((EDGE){id[pos],id[pos]});
             edge.push_back((EDGE){id[pos2],id[pos2]});
         }
-        int pos1 = randi(0,n-1);
-        while(ro[pos1].size()<3)pos1 = randi(0,n-1);
-        int cnt = 0;
-        int pos2 = ro[pos1][cnt++];if(pos2==fa[pos1])pos2 = ro[pos1][cnt++];
-        int pos3 = ro[pos1][cnt++];if(pos3==fa[pos1])pos3 = ro[pos1][cnt++];
-        edge.push_back((EDGE){id[pos2],id[pos3]});
-        edge.push_back((EDGE){id[pos3],id[pos1]});
+        if(bigHuan){
+            int pos1 = randi(0,n-1);
+            while(ro[pos1].size()<3)pos1 = randi(0,n-1);
+            int cnt = 0;
+            int pos2 = ro[pos1][cnt++];if(pos2==fa[pos1])pos2 = ro[pos1][cnt++];
+            int pos3 = ro[pos1][cnt++];if(pos3==fa[pos1])pos3 = ro[pos1][cnt++];
+            edge.push_back((EDGE){id[pos2],id[pos3]});
+            edge.push_back((EDGE){id[pos3],id[pos1]});
+        }
     }
     while(int(edge.size())<m){
         int pos = randi(0,edge.size()-1);
