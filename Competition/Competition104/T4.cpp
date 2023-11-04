@@ -4,10 +4,10 @@ using namespace std;
 inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 int n,m,ans;
 set<int>s[7505];
-bool vaild(int a,int b){
-    int num[55];for(int i = 0;i<=54;i++)num[i]=0;
-    bool hav[55];for(int i = 0;i<=54;i++)hav[i]=0;
-    for(int i:s[b]) hav[i]=true;
+int num[55];
+bool hav[55];
+bool vaild(int a){
+    for(int i = 0;i<=54;i++)num[i]=0;
     int p = 1;
     for(int i:s[a]){
         for(;p<=54;p++){
@@ -34,8 +34,10 @@ int main(){
         }
     }
     for(int j = 1;j<=n;j++){
+        for(int i = 0;i<=54;i++)hav[i]=0;
+        for(int i:s[j]) hav[i]=true;
         for(int i = 1;i<j;i++){
-            if(vaild(i,j))ans++;
+            if(vaild(i))ans++;
         }
     }
     cout<<ans;
