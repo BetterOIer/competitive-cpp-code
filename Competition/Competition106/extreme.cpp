@@ -8,8 +8,8 @@ int main(){
     freopen("extreme.in","r",stdin);
     freopen("extreme.out","w",stdout);
     #else
-    freopen("C/ex_C1.in","r",stdin);
-    freopen("C/ex_C1.out","w",stdout);
+    freopen("C/ex_C3.in","r",stdin);
+    freopen("C/ex_C3.out","w",stdout);
     #endif
     n=read(),d=read();int maxn = (1<<(n*2))-1;
     for(int i = 1;i<=n;i++)a[i]=read();
