@@ -1,43 +1,24 @@
-#include <iostream>
-#include <cstring>
+/*=================================================
+* Le vent se lève, il faut tenter de vivre!
+* Author: Better_OIer Zyx
+* 起风了，唯有努力生存！
+* Blog: https://betteroier.site:1000
+* FileStation: https://betteroier.site:1005
+* OnlineJudge: http://betteroier.site:8888
+=================================================*/
+#include<iostream>
+#include<map>
 using namespace std;
-long long n, m, p, q, a1, a2, ans;
-struct mat{
-	long long m[4][4];
-}squ1, squ2;
-inline void init() {
-	squ1.m[1][1] = a2, squ1.m[1][2] = a1;
-	squ2.m[1][1] = p, squ2.m[2][1] = q, squ2.m[1][2] = 1;
+inline long long read(){long long x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=((x<<3)+(x<<1)+(c^48))%150000000;return x*f;}
+map<long long,long long>m;
+long long a,b,c,d;
+long long dfs(long long a){
+	if(a==1)return 1;
+	if(a==2)return 1;
+	if(m[a])return m[a];
+	else return m[a]=a%2==0?(dfs(a/2)+2*dfs(a/2-1))*dfs(a/2)%100000000:(dfs(a/2)*dfs(a/2)+dfs(a/2+1)*dfs(a/2+1))%100000000;
 }
-inline mat mul(mat a, mat b) {
-	mat res;
-	memset(res.m, 0, sizeof(res.m));
-	for(int i=1; i<=2; i++) {
-		for(int j=1; j<=2; j++) {
-			for(int k=1; k<=2; k++) {
-				res.m[i][j] += (a.m[i][k] % m) * (b.m[k][j] % m);
-				res.m[i][j] %= m;
-			}
-		}
-	}
-	return res;
-}
-inline void Qmat_pow(int p) {
-	while (p) {
-		if(p & 1) squ1 = mul(squ1, squ2);
-		squ2 = mul(squ2, squ2);
-		p >>= 1;
-	}
-}
-
-int main() {
-	scanf("%lld",&n);a1=1,a2=2,p=1,q=1,m=100000000;
-	if(n == 1) {cout<<a1;return 0;}
-	if(n == 2) {cout<<a2;return 0;}
-	squ1.m[1][1] = a2, squ1.m[1][2] = a1;
-	squ2.m[1][1] = p, squ2.m[2][1] = q, squ2.m[1][2] = 1;
-	Qmat_pow(n-2);
-	ans = squ1.m[1][1];
-	ans %= m;
-	printf("%lld", ans);
+int main(){
+	a=read();
+	cout<<dfs(a+1);
 }
