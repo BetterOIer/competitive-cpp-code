@@ -31,46 +31,46 @@ int main(){
         //4
         ans+=atdMap[15],atdMap[15]-=atdMap[15];
         //3-1
-        cnt=min(atdMap[7],atdMap[8]),atdMap[7]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[11],atdMap[4]),atdMap[11]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[13],atdMap[2]),atdMap[13]-=cnt,atdMap[2]-=cnt;ans+=cnt;
-        cnt=min(atdMap[14],atdMap[1]),atdMap[14]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        cnt=min(atdMap[7],atdMap[8]),atdMap[7]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[11],atdMap[4]),atdMap[11]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[13],atdMap[2]),atdMap[13]-=cnt,atdMap[2]-=cnt,ans+=cnt;
+        cnt=min(atdMap[14],atdMap[1]),atdMap[14]-=cnt,atdMap[1]-=cnt,ans+=cnt;
         //2-2
-        cnt=min(atdMap[3],atdMap[12]),atdMap[3]-=cnt,atdMap[12]-=cnt;ans+=cnt;
-        cnt=min(atdMap[5],atdMap[10]),atdMap[5]-=cnt,atdMap[10]-=cnt;ans+=cnt;
-        cnt=min(atdMap[9],atdMap[6]),atdMap[9]-=cnt,atdMap[6]-=cnt;ans+=cnt;
+        cnt=min(atdMap[3],atdMap[12]),atdMap[3]-=cnt,atdMap[12]-=cnt,ans+=cnt;
+        cnt=min(atdMap[5],atdMap[10]),atdMap[5]-=cnt,atdMap[10]-=cnt,ans+=cnt;
+        cnt=min(atdMap[9],atdMap[6]),atdMap[9]-=cnt,atdMap[6]-=cnt,ans+=cnt;
         //2-1-1
-        cnt=min(atdMap[3],min(atdMap[4],atdMap[8])),atdMap[3]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[5],min(atdMap[2],atdMap[8])),atdMap[5]-=cnt,atdMap[2]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[9],min(atdMap[2],atdMap[4])),atdMap[9]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[6],min(atdMap[1],atdMap[8])),atdMap[6]-=cnt,atdMap[1]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[10],min(atdMap[1],atdMap[4])),atdMap[10]-=cnt,atdMap[1]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[12],min(atdMap[1],atdMap[2])),atdMap[12]-=cnt,atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[3],min(atdMap[4],atdMap[8])),atdMap[3]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[5],min(atdMap[2],atdMap[8])),atdMap[5]-=cnt,atdMap[2]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[9],min(atdMap[2],atdMap[4])),atdMap[9]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[6],min(atdMap[1],atdMap[8])),atdMap[6]-=cnt,atdMap[1]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[10],min(atdMap[1],atdMap[4])),atdMap[10]-=cnt,atdMap[1]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[12],min(atdMap[1],atdMap[2])),atdMap[12]-=cnt,atdMap[1]-=cnt,atdMap[2]-=cnt,ans+=cnt;
         //1-1-1-1
-        cnt=min(min(atdMap[1],atdMap[2]),min(atdMap[4],atdMap[8])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(min(atdMap[1],atdMap[2]),min(atdMap[4],atdMap[8])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt,ans+=cnt;
         //3
         ans+=atdMap[7],atdMap[7]-=atdMap[7];
         ans+=atdMap[11],atdMap[11]-=atdMap[11];
         ans+=atdMap[13],atdMap[13]-=atdMap[13];
         ans+=atdMap[14],atdMap[14]-=atdMap[14];
         //2-1
-        cnt=min(atdMap[3],atdMap[4]),atdMap[3]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[3],atdMap[8]),atdMap[3]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[5],atdMap[2]),atdMap[5]-=cnt,atdMap[2]-=cnt;ans+=cnt;
-        cnt=min(atdMap[5],atdMap[8]),atdMap[5]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[9],atdMap[2]),atdMap[9]-=cnt,atdMap[2]-=cnt;ans+=cnt;
-        cnt=min(atdMap[9],atdMap[4]),atdMap[9]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[6],atdMap[1]),atdMap[6]-=cnt,atdMap[1]-=cnt;ans+=cnt;
-        cnt=min(atdMap[6],atdMap[8]),atdMap[6]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[10],atdMap[1]),atdMap[10]-=cnt,atdMap[1]-=cnt;ans+=cnt;
-        cnt=min(atdMap[10],atdMap[4]),atdMap[10]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[12],atdMap[1]),atdMap[12]-=cnt,atdMap[1]-=cnt;ans+=cnt;
-        cnt=min(atdMap[12],atdMap[2]),atdMap[12]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[3],atdMap[4]),atdMap[3]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[3],atdMap[8]),atdMap[3]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[5],atdMap[2]),atdMap[5]-=cnt,atdMap[2]-=cnt,ans+=cnt;
+        cnt=min(atdMap[5],atdMap[8]),atdMap[5]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[9],atdMap[2]),atdMap[9]-=cnt,atdMap[2]-=cnt,ans+=cnt;
+        cnt=min(atdMap[9],atdMap[4]),atdMap[9]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[6],atdMap[1]),atdMap[6]-=cnt,atdMap[1]-=cnt,ans+=cnt;
+        cnt=min(atdMap[6],atdMap[8]),atdMap[6]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[10],atdMap[1]),atdMap[10]-=cnt,atdMap[1]-=cnt,ans+=cnt;
+        cnt=min(atdMap[10],atdMap[4]),atdMap[10]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[12],atdMap[1]),atdMap[12]-=cnt,atdMap[1]-=cnt,ans+=cnt;
+        cnt=min(atdMap[12],atdMap[2]),atdMap[12]-=cnt,atdMap[2]-=cnt,ans+=cnt;
         //1-1-1
-        cnt=min(atdMap[2],min(atdMap[4],atdMap[8])),atdMap[2]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[1],min(atdMap[2],atdMap[8])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[1],min(atdMap[2],atdMap[4])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[4],min(atdMap[1],atdMap[8])),atdMap[4]-=cnt,atdMap[1]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[2],min(atdMap[4],atdMap[8])),atdMap[2]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[1],min(atdMap[2],atdMap[8])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[1],min(atdMap[2],atdMap[4])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[4],min(atdMap[1],atdMap[8])),atdMap[4]-=cnt,atdMap[1]-=cnt,atdMap[8]-=cnt,ans+=cnt;
         //2
         ans+=atdMap[3],atdMap[3]-=atdMap[3];
         ans+=atdMap[9],atdMap[9]-=atdMap[9];
@@ -79,12 +79,12 @@ int main(){
         ans+=atdMap[10],atdMap[10]-=atdMap[10];
         ans+=atdMap[12],atdMap[12]-=atdMap[12];
         //1-1
-        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
-        cnt=min(atdMap[1],atdMap[4]),atdMap[1]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[1],atdMap[8]),atdMap[1]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[2],atdMap[4]),atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[2],atdMap[8]),atdMap[2]-=cnt,atdMap[8]-=cnt;ans+=cnt;
-        cnt=min(atdMap[4],atdMap[8]),atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt,ans+=cnt;
+        cnt=min(atdMap[1],atdMap[4]),atdMap[1]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[1],atdMap[8]),atdMap[1]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[2],atdMap[4]),atdMap[2]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[2],atdMap[8]),atdMap[2]-=cnt,atdMap[8]-=cnt,ans+=cnt;
+        cnt=min(atdMap[4],atdMap[8]),atdMap[4]-=cnt,atdMap[8]-=cnt,ans+=cnt;
         //1
         ans+=atdMap[1],atdMap[1]-=atdMap[1];
         ans+=atdMap[2],atdMap[2]-=atdMap[2];
@@ -95,19 +95,19 @@ int main(){
         //3
         ans+=atdMap[7],atdMap[7]-=atdMap[7];
         //2-1
-        cnt=min(atdMap[3],atdMap[4]),atdMap[3]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[5],atdMap[2]),atdMap[5]-=cnt,atdMap[2]-=cnt;ans+=cnt;
-        cnt=min(atdMap[6],atdMap[1]),atdMap[6]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        cnt=min(atdMap[3],atdMap[4]),atdMap[3]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[5],atdMap[2]),atdMap[5]-=cnt,atdMap[2]-=cnt,ans+=cnt;
+        cnt=min(atdMap[6],atdMap[1]),atdMap[6]-=cnt,atdMap[1]-=cnt,ans+=cnt;
         //1-1-1
-        cnt=min(atdMap[1],min(atdMap[2],atdMap[4])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],min(atdMap[2],atdMap[4])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt,ans+=cnt;
         //2
         ans+=atdMap[3],atdMap[3]-=atdMap[3];
         ans+=atdMap[5],atdMap[5]-=atdMap[5];
         ans+=atdMap[6],atdMap[6]-=atdMap[6];
         //1-1
-        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
-        cnt=min(atdMap[1],atdMap[4]),atdMap[1]-=cnt,atdMap[4]-=cnt;ans+=cnt;
-        cnt=min(atdMap[2],atdMap[4]),atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt,ans+=cnt;
+        cnt=min(atdMap[1],atdMap[4]),atdMap[1]-=cnt,atdMap[4]-=cnt,ans+=cnt;
+        cnt=min(atdMap[2],atdMap[4]),atdMap[2]-=cnt,atdMap[4]-=cnt,ans+=cnt;
         //1
         ans+=atdMap[1],atdMap[1]-=atdMap[1];
         ans+=atdMap[2],atdMap[2]-=atdMap[2];
@@ -117,7 +117,7 @@ int main(){
         //2
         ans+=atdMap[3],atdMap[3]-=atdMap[3];
         //1-1
-        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt,ans+=cnt;
         //1
         ans+=atdMap[1],atdMap[1]-=atdMap[1];
         ans+=atdMap[2],atdMap[2]-=atdMap[2];
