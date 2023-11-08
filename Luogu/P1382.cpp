@@ -28,7 +28,14 @@ struct ANS{
 };
 vector<ANS>ans;
 bool operator < (const LINE a,const LINE b){
-    if(a.x==b.x)return a.tag>b.tag;
+    if(a.x==b.x){
+        if(a.tag==b.tag){
+            if(a.tag==1)return a.y>b.y;//注意入编和出边顺序，否则会导致同个x上出现相同的y
+            else return a.y<b.y;
+        }else{
+            return a.tag>b.tag;
+        }
+    }
     return a.x<b.x;
 }
 void pushUp(int pos,int l,int r){
