@@ -9,7 +9,12 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+inline int read(){
+    int x=0,f=1;char c=getchar();
+    for(;!isdigit(c);c=getchar())if(c=='-')f=-1;
+    for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);
+    return x*f;
+}
 int totRoot/* 存储主席树的根的个数 */,n,m,cnt/* 记录dfs序 */;
 string s;
 int scr[100005],rlg[100005],fa[100005],dep[100005],siz[100005],hvSon[100005],dfn[100005],top[100005];
