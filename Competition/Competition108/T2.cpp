@@ -10,7 +10,7 @@ vector<node>ro[2000005];
 vector<node>nRo[2000005];
 int dfs(int pos,int fa,int roval){
     if(fa==0)idx[pos]=++id;
-    if(ro[pos].size()<=k)idx[pos]=id;
+    if(int(ro[pos].size())<=k)idx[pos]=id;
     else return nRo[id].push_back((node){idx[pos],roval}),nRo[idx[pos]].push_back((node){id,roval}),0;
     int res = 0;
     for(auto i:ro[pos]){
@@ -34,7 +34,7 @@ int main(){
         ro[v].push_back((node){u,w});
     }
     for(int i = 1;i<=n;i++){
-        if(ro[i].size()>k)idx[i]=++id,isBig[id]=true;
+        if(int(ro[i].size())>k)idx[i]=++id,isBig[id]=true;
     }
     for(int i = 1;i<=n;i++){
         if(!idx[i]){int va = dfs(i,0,0);val[id]=va;}
