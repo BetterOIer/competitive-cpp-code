@@ -1,0 +1,131 @@
+#include<iostream>
+#include<vector>
+#include<map>
+using namespace std;
+inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
+int n,m,cnt;
+int atd[100005];
+long long ans=0;
+map<int,int>atdMap;
+int main(){
+    #ifndef LOCAL
+    freopen("contest.in","r",stdin);
+    freopen("contest.out","w",stdout);
+    #else
+    freopen("ex_contest3.in","r",stdin);
+    freopen("ex_contest3.out","w",stdout);
+    #endif
+    n=read(),m=read();
+    for(int i=1,k;i<=m;i++){
+        k=read();
+        for(int j=1,x;j<=k;j++){
+            x=read();
+            atd[x]+=(1<<(i-1));
+        }
+    }
+    for(int i=1;i<=n;i++){
+        if(atdMap.find(atd[i])==atdMap.end())atdMap[atd[i]]=0;
+        atdMap[atd[i]]++;
+    }
+    if(m==4){
+        //4
+        ans+=atdMap[15],atdMap[15]-=atdMap[15];
+        //3-1
+        cnt=min(atdMap[7],atdMap[8]),atdMap[7]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[11],atdMap[4]),atdMap[11]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[13],atdMap[2]),atdMap[13]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[14],atdMap[1]),atdMap[14]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        //2-2
+        cnt=min(atdMap[3],atdMap[12]),atdMap[3]-=cnt,atdMap[12]-=cnt;ans+=cnt;
+        cnt=min(atdMap[5],atdMap[10]),atdMap[5]-=cnt,atdMap[10]-=cnt;ans+=cnt;
+        cnt=min(atdMap[9],atdMap[6]),atdMap[9]-=cnt,atdMap[6]-=cnt;ans+=cnt;
+        //2-1-1
+        cnt=min(atdMap[3],min(atdMap[4],atdMap[8])),atdMap[3]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[5],min(atdMap[2],atdMap[8])),atdMap[5]-=cnt,atdMap[2]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[9],min(atdMap[2],atdMap[4])),atdMap[9]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[6],min(atdMap[1],atdMap[8])),atdMap[6]-=cnt,atdMap[1]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[10],min(atdMap[1],atdMap[4])),atdMap[10]-=cnt,atdMap[1]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[12],min(atdMap[1],atdMap[2])),atdMap[12]-=cnt,atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        //1-1-1-1
+        cnt=min(min(atdMap[1],atdMap[2]),min(atdMap[4],atdMap[8])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        //3
+        ans+=atdMap[7],atdMap[7]-=atdMap[7];
+        ans+=atdMap[11],atdMap[11]-=atdMap[11];
+        ans+=atdMap[13],atdMap[13]-=atdMap[13];
+        ans+=atdMap[14],atdMap[14]-=atdMap[14];
+        //2-1
+        cnt=min(atdMap[3],atdMap[4]),atdMap[3]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[3],atdMap[8]),atdMap[3]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[5],atdMap[2]),atdMap[5]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[5],atdMap[8]),atdMap[5]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[9],atdMap[2]),atdMap[9]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[9],atdMap[4]),atdMap[9]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[6],atdMap[1]),atdMap[6]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        cnt=min(atdMap[6],atdMap[8]),atdMap[6]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[10],atdMap[1]),atdMap[10]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        cnt=min(atdMap[10],atdMap[4]),atdMap[10]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[12],atdMap[1]),atdMap[12]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        cnt=min(atdMap[12],atdMap[2]),atdMap[12]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        //1-1-1
+        cnt=min(atdMap[2],min(atdMap[4],atdMap[8])),atdMap[2]-=cnt,atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],min(atdMap[2],atdMap[8])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],min(atdMap[2],atdMap[4])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[4],min(atdMap[1],atdMap[8])),atdMap[4]-=cnt,atdMap[1]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        //2
+        ans+=atdMap[3],atdMap[3]-=atdMap[3];
+        ans+=atdMap[9],atdMap[9]-=atdMap[9];
+        ans+=atdMap[5],atdMap[5]-=atdMap[5];
+        ans+=atdMap[6],atdMap[6]-=atdMap[6];
+        ans+=atdMap[10],atdMap[10]-=atdMap[10];
+        ans+=atdMap[12],atdMap[12]-=atdMap[12];
+        //1-1
+        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],atdMap[4]),atdMap[1]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],atdMap[8]),atdMap[1]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[2],atdMap[4]),atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[2],atdMap[8]),atdMap[2]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        cnt=min(atdMap[4],atdMap[8]),atdMap[4]-=cnt,atdMap[8]-=cnt;ans+=cnt;
+        //1
+        ans+=atdMap[1],atdMap[1]-=atdMap[1];
+        ans+=atdMap[2],atdMap[2]-=atdMap[2];
+        ans+=atdMap[4],atdMap[4]-=atdMap[4];
+        ans+=atdMap[8],atdMap[8]-=atdMap[8];
+    }
+    if(m==3){
+        //3
+        ans+=atdMap[7],atdMap[7]-=atdMap[7];
+        //2-1
+        cnt=min(atdMap[3],atdMap[4]),atdMap[3]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[5],atdMap[2]),atdMap[5]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[6],atdMap[1]),atdMap[6]-=cnt,atdMap[1]-=cnt;ans+=cnt;
+        //1-1-1
+        cnt=min(atdMap[1],min(atdMap[2],atdMap[4])),atdMap[1]-=cnt,atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        //2
+        ans+=atdMap[3],atdMap[3]-=atdMap[3];
+        ans+=atdMap[5],atdMap[5]-=atdMap[5];
+        ans+=atdMap[6],atdMap[6]-=atdMap[6];
+        //1-1
+        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        cnt=min(atdMap[1],atdMap[4]),atdMap[1]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        cnt=min(atdMap[2],atdMap[4]),atdMap[2]-=cnt,atdMap[4]-=cnt;ans+=cnt;
+        //1
+        ans+=atdMap[1],atdMap[1]-=atdMap[1];
+        ans+=atdMap[2],atdMap[2]-=atdMap[2];
+        ans+=atdMap[4],atdMap[4]-=atdMap[4];
+    }
+    if(m==2){
+        //2
+        ans+=atdMap[3],atdMap[3]-=atdMap[3];
+        //1-1
+        cnt=min(atdMap[1],atdMap[2]),atdMap[1]-=cnt,atdMap[2]-=cnt;ans+=cnt;
+        //1
+        ans+=atdMap[1],atdMap[1]-=atdMap[1];
+        ans+=atdMap[2],atdMap[2]-=atdMap[2];
+    }
+    if(m==1){
+        //1
+        ans+=atdMap[1],atdMap[1]-=atdMap[1];
+    }
+    cout<<ans;
+    return 0;
+}
