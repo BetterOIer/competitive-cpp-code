@@ -8,7 +8,7 @@ struct CARD{
     long long val;
     int scr;
 }card[105];
-long long dp[2][105][2605][105]/* ,maxv[2][105][2605][105] */;
+long long dp[2][105][2605][105];
 vector<int>v1,v2;
 bool operator< (const CARD a,const CARD b){
     return a.scr>b.scr;
@@ -19,12 +19,11 @@ int main(){
     freopen("card.out","w",stdout);
     #else
     freopen("ex_card4.in","r",stdin);
-    //freopen("ex_card4.res","w",stdout);
+    freopen("ex_card4.res","w",stdout);
     #endif
     n=read(),k=read();int Q=0;
     for(int i = 1;i<=n;i++){
         card[i].val=read(),card[i].scr=read();Q+=card[i].scr;
-        //if(card[i].val<0){i--,n--;}
     }
     for(int i = 0;i<=1;i++){
         for(int j = 0;j<=104;j++){
@@ -53,28 +52,12 @@ int main(){
                             if(q+card[j].scr<(Q<<1))res=max(res,dp[flg^1][m][q+card[j].scr][p]+card[j].val);
                         }
                     }
-                    dp[flg][j][q][p]/* =maxv[flg][j][q][p] */=res;
-                    //if(flg&&j==1&&q==Q+6&&p==1)cout<<"n:"<<dp[flg][j][q][p]<<endl;
-                    //if(!flg&&j==2&&q==Q+6&&k==0)cout<<"m:"<<dp[flg][j][q][p]<<endl;
+                    dp[flg][j][q][p]=res;
                     if(q==Q)ans=max(ans,res);
-                    ///cout<<ans<<endl;
                 }
             }
         }
     }
     cout<<ans;
-    /* sort(card+1,card+n+1);
-    int p1=0,p2=0,val=0;
-    for(int i =1;i<=n;i++){
-        if(p1<p2){
-            v1.push_back(i);
-            p1+=card[i].scr;
-        }else{
-            v2.push_back(i);
-            p2+=card[i].scr;
-        }
-        val+=card[i].val;
-    }
-    cout<<p1<<" " <<p2<<" "<<val; */
     return 0;
 }
