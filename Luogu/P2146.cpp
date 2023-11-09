@@ -40,13 +40,13 @@ void dfs2(int pos,int nTop){
 }
 
 
-/* ======= 线段树部分部分 ========= */
+/* ======= 线段树部分 ========= */
 int root[100005];
 struct node{
-    int sum,tag;
+    int sum,tag=-1;
 }tr[100005*20];
 void pushDown(int pos,int l,int r){
-    if(~tr[pos].tag)return;
+    if(tr[pos].tag==-1)return;
     int mid = (l+r)>>1;
     tr[pos<<1].sum=(mid-l+1)*tr[pos].tag;
     tr[pos<<1|1].sum=(r-mid)*tr[pos].tag;
@@ -72,17 +72,16 @@ void updateSeg(int u,int v,int val){
 int main(){
     totRoot=0;
     n=read();
-    for(int i = 1,u;i<n;i++){
-        u=read();
+    for(int i = 2,u;i<=n;i++){
+        u=read()+1;
         ro[u].emplace_back(i);
         ro[i].emplace_back(u);
     }
     dfs1(1,0);dfs2(1,1);
     m=read();
     while(m--){
-        cin>>s;int x=read(),last=tr[1].sum;;
+        cin>>s;int x=read()+1,last=tr[1].sum;;
         if(s=="install"){
-            
             updateSeg(1,x,1);
             cout<<abs(last-tr[1].sum)<<endl;
         }else if(s=="uninstall"){
