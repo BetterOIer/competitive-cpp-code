@@ -1,6 +1,7 @@
 #include <iostream>  
 #include <cstring>  
 #include <winsock2.h>  
+#include<windows.h>
   
 char temp[1024] = { 0 }; 
 hostent *host;
@@ -36,14 +37,35 @@ int main() {
         closesocket(sock);  
         return 1;  
     }  
-    
+    std::cout << "Success: Connect to the server!" << std::endl;
+
+    std::cout << "Closing Request sending countdown: " ;
+
+    std::cout << "3 ";
+    Sleep(1000);
+    std::cout << "2 ";
+    Sleep(1000);
+    std::cout << "1 ";
+    Sleep(1000);
+    std::cout << "0\n";
     snprintf(temp, sizeof(temp), "%s", "shutdown\n");
 	int sendLen = send(sock, (char*)temp, sizeof(temp), 0);
 	if (sendLen < 0) {
 		std::cout << "Error: send info to server failed !" << std::endl;
 		return -1;
 	}
-	std::cout << "Send successfully, quiting....." << std::endl;
+	std::cout << "Success: Request sent to the server!" << std::endl;
+
+    char recv_buf[8192] = { 0 };
+    const char* message = "Received";  
+	int recv_len = recv(sock, recv_buf, sizeof(recv_buf), 0);
+	if (recv_len < 0) {
+		std::cout << "Error: receive info from server failed!" << std::endl;
+		return -1;
+	}
+    if(memcmp(recv_buf,message,strlen(message))==0){
+        return std::cout << "Success: Closing info confirmed!" << std::endl,closesocket(sock),WSACleanup(),0;
+    }else std::cout << "Error: failed to close the server!" << std::endl;
     closesocket(sock);  
     WSACleanup();  
     return 0;  
