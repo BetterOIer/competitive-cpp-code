@@ -19,7 +19,7 @@ long long qpow(long long a,long long b){
     return res;
 }
 bool chkAns(){
-    memset(tim,0,sizeof tim);
+    /* memset(tim,0,sizeof tim);
     for(int i = 1;i<=n;i++){
         tim[a[i]]++;
         if(tim[a[i]]>1)return false;
@@ -31,21 +31,26 @@ bool chkAns(){
     }
     for(int i = 1;i<=n;i++){
         if(a[i+n]==a[i])return false;
-    }
+    } */
     int cnt=0;
-    for(int i = 1;i<=n;i++){
+    for(int i = 1;i<=(n<<1);i++){
         cnt^=a[i];
     }
     return cnt==0;
 }
+int app[2][100005];
 void dfs(int whi){
     if(whi==(n<<1)+1){
         add(ans,chkAns());
         return ;
     }
     for(int i = 0;i<maxx;i++){
+        if(whi>n&&a[(whi-1)%n+1]==i)continue;
+        if(app[(whi-1)/n][i]==1)continue;
         a[whi]=i;
+        app[(whi-1)/n][i]++;
         dfs(whi+1);
+        app[(whi-1)/n][i]--;
     }
 }
 int main(){
@@ -57,5 +62,6 @@ int main(){
     n=read(),k=read();
     maxx=qpow(2,k);
     dfs(1);
+    cout<<ans;
     return 0;
 }
