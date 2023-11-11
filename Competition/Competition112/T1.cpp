@@ -50,6 +50,7 @@ int main(){
             for(int y = i.first+1;y<=my;y++){
                 for(int x = i.second+1;x<=mx;x++){
                     if(pre[y][x]+pre[i.first-_t][i.second-_t]-pre[y][i.second-_t]-pre[x][i.first-_t]==_t*_t)num++;
+                    /* else mx=x-1; */
                 }
             }
             ans+=num;
