@@ -3,6 +3,7 @@
 #include<set>
 #include<ctime>
 using namespace std;
+const int mod = 998244353;
 inline int read(){int x=0,f=1;char c=getchar();for(;!isdigit(c);c=getchar())if(c=='-')f=-1;for(;isdigit(c);c=getchar())x=(x<<3)+(x<<1)+(c^48);return x*f;}
 int a[305],pre[1100000],tot,n,tmp[305],cnt=0;
 set<int>s;
@@ -40,6 +41,10 @@ void insert(int pos){
         s.insert(getTmp(i));
     }
 }
+void add(int &ans){
+    if(ans+1==mod)ans=0;
+    else ans++;
+}
 void getAns(){
     tot=0;s.clear();
     for(int i = 0;i<(1<<n);i++){
@@ -50,7 +55,7 @@ void getAns(){
     sort(pre+1,pre+tot+1,cmp);
     int ans=0;
     for(int i =1;i<=tot;i++){
-        if(s.find(pre[i])==s.end())insert(pre[i]),ans++;
+        if(s.find(pre[i])==s.end())insert(pre[i]),add(ans);
     }
     cout<<ans<<endl;;
 }
