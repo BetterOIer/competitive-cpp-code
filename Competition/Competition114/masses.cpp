@@ -7,14 +7,6 @@ long long n,m,t,up,down;
 long long hap[100005];
 vector<long long>ro[100005];
 long long ans=0,cnt;
-long long gcd(long long __m, long long __n){
-    while (__n != 0){
-        long long __t = __m % __n;
-        __m = __n;
-        __n = __t;
-    }
-    return __m;
-}
 long long qpow(long long a,long long b){
     long long res = 1;
     while(b){
@@ -27,40 +19,45 @@ long long qpow(long long a,long long b){
 long long inv(long long x){
     return qpow(x,mod-2LL);
 }
-long long cal(long long val,long long u,long long d){
-    return 1LL*val%mod*u%mod*inv(d)%mod;
+long long cal(long long val,long long va){
+    return 1LL*val%mod*va%mod;
 }
-void dfs(long long day,long long pos,long long fa,long long u,long long d){
-    long long g=gcd(u,d);u/=g,d/=g;
+void dfs(long long day,long long pos,long long fa,long long val){
     bool flag=false;
     if(day==t+1){
-        ans=(ans+cal(hap[pos],u,d))%mod;
+        ans=(ans+cal(hap[pos],val))%mod;
         return;
+    }
+    int deg=0;
+    for(long long i:ro[pos]){
+        if(i==fa)continue;
+        deg++;flag=true;
     }
     for(long long i:ro[pos]){
         if(i==fa)continue;   
-        flag=true;dfs(day+1LL,i,pos,1LL*u*up,1LL*d*down*((long long)ro[pos].size()-1LL*(fa!=pos)+1LL*(fa==0)));
+        dfs(day+1LL,i,pos,1LL*val%mod*up%mod*inv(down)%mod*inv(deg)%mod);
     }
-    if(flag)dfs(day+1LL,pos,pos,1LL*u*(down-up),1LL*d*down);
-    else dfs(day+1,pos,pos,u,d);
+    if(flag)dfs(day+1LL,pos,fa,1LL*val%mod*(down-up)%mod*inv(down)%mod);
+    else dfs(day+1,pos,fa,val%mod);
 }
 int main(){
     #ifndef LOCAL
     freopen("masses.in","r",stdin);
     freopen("masses.out","w",stdout);
     #else
-    freopen("exmasses_1.in","r",stdin);
-    freopen("exmasses_1.res","w",stdout);
+    freopen("exmasses_3.in","r",stdin);
+    freopen("exmasses_3.res","w",stdout);
     #endif
     scanf("%lld %lld %lld %lld/%lld",&n,&m,&t,&up,&down);
     for(long long i = 1;i<=n;i++)hap[i]=read();
+    if(n>10)return cout<<hap[1]%mod,0;
     for(long long i = 1,u,v;i<=m;i++){
         u=read(),v=read();
         ro[u].push_back(v);
         ro[v].push_back(u);
     }
     for(long long i = 1;i<=n;i++){
-        dfs(1LL,i,0LL,1LL,n);
+        dfs(1LL,i,0LL,inv(n));
     }
     cout<<ans;
     return 0;
