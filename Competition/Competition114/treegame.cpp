@@ -26,6 +26,7 @@ int main(){
     freopen("extreegame_6.res","w",stdout);
     #endif
     n=read(),k=read();
+    if(n==1)return printf("NO!"),0;
     for(long long i = 1,u,v;i<n;i++){
         u=read(),v=read();
         ro[u].push_back(v);
