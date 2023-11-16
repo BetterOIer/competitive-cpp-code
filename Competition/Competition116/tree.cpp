@@ -71,6 +71,7 @@ int main(){
     for(int i = 1;i<=n;i++)root=i,dfs1(i,0);
     int res=0;
     while(clock()-t<2980){
+        /* sort(idx.begin(),idx.end(),cmp); */
         if(n>9)shuffle(idx.begin(),idx.end(),engi);
         else next_permutation(idx.begin(),idx.end());
         for(int i = 0;i<n-1;i++)edge[idx[i]].val=i;
