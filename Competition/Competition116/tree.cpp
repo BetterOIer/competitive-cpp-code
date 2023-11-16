@@ -55,8 +55,8 @@ int main(){
     freopen("tree.in","r",stdin);
     freopen("tree.out","w",stdout);
     #else
-    freopen("ex_tree2.in","r",stdin);
-    freopen("ex_tree2.out","w",stdout);
+    freopen("ex_tree4.in","r",stdin);
+    freopen("ex_tree4.out","w",stdout);
     #endif
     int t=clock();
     n=read();
